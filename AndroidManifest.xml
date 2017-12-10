@@ -24,9 +24,9 @@
             android:name=".ListaClientes"
             android:label="@string/title_activity_lista_clientes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Reistro_Cliente" />
+        <activity android:name=".registro_cliente" />
         <activity android:name=".registro_mascota" />
-        <activity android:name=".registro_historial" />
+        <activity android:name=".registro_servicio" />
         <activity android:name=".registro_medico" />
         <activity android:name=".Medicos" />
         <activity android:name=".Mascotas" />

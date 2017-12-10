@@ -8,7 +8,7 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@mipmap/foto"/>
+        android:src="@mipmap/doctor"/>
 
     <TextView
         android:id="@+id/id"
@@ -31,5 +31,4 @@
         android:hint="Nombre"
         android:textSize="35sp"
         android:layout_marginLeft="10dp"/>
-
 </RelativeLayout>

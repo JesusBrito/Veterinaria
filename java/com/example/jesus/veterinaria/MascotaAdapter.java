@@ -1,4 +1,5 @@
 package com.example.jesus.veterinaria;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,14 +11,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Fernando on 08/12/2017.
+ * Created by jesus on 9/12/17.
  */
-public class ClienteAdapter extends BaseAdapter {
+public class MascotaAdapter extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<ClienteModelo> items;
+    protected ArrayList<MascotaModelo> items;
 
-    public ClienteAdapter (Activity activity, ArrayList<ClienteModelo> items) {
+    public MascotaAdapter (Activity activity, ArrayList<MascotaModelo> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -26,9 +27,9 @@ public class ClienteAdapter extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<ClienteModelo> clientes) {
-        for (int i = 0; i < clientes.size(); i++) {
-            items.add(clientes.get(i));
+    public void addAll(ArrayList<MascotaModelo> mascotas) {
+        for (int i = 0; i < mascotas.size(); i++) {
+            items.add(mascotas.get(i));
         }
     }
     @Override
@@ -52,15 +53,15 @@ public class ClienteAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.item_list, null);
+            v = inf.inflate(R.layout.item_list_mascota, null);
         }
-
-        ClienteModelo cliente = items.get(position);
-
+        MascotaModelo mascota = items.get(position);
         TextView title = (TextView) v.findViewById(R.id.name);
-        title.setText(cliente.getName());
+        title.setText(mascota.getName());
         TextView id = (TextView) v.findViewById(R.id.id);
-        id.setText(cliente.getId());
+        id.setText(mascota.getId());
+        TextView rfc = (TextView) v.findViewById(R.id.rfc);
+        rfc.setText(mascota.getRfc());
         return v;
     }
 }

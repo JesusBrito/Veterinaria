@@ -25,7 +25,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
     ProgressDialog dialog;
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
-    ArrayList<ClienteModelo> lista;
+    ArrayList<PersonaModelo> lista;
     ImageButton btnMas;
     Intent cargar;
     @Override
@@ -38,7 +38,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
         cargarWebService();
 
 
-        lista = new ArrayList<ClienteModelo>();
+        lista = new ArrayList<PersonaModelo>();
 
         btnMas = (ImageButton) findViewById(R.id.principalClientesAdd);
 
@@ -54,7 +54,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
 
     private void agregarCliente() {
 
-        cargar = new Intent(this, Reistro_Cliente.class);
+        cargar = new Intent(this, registro_cliente.class);
         this.startActivity(cargar);
     }
 
@@ -79,7 +79,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
 
     @Override
     public void onResponse(JSONArray response) {
-        ClienteModelo cliente = null;
+        PersonaModelo cliente = null;
 
         try {
             for (int i=0;i<response.length();i++){
@@ -89,12 +89,12 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
                 String rfc = jsonObject.optString("pk");
                 JSONObject fields = jsonObject.getJSONObject("fields");
                 String name = fields.optString("nombre_cliente");
-                cliente=new ClienteModelo(rfc, name);
+                cliente=new PersonaModelo(rfc, name);
 
                 lista.add(cliente);
             }
             dialog.hide();
-            ClienteAdapter adapter=new ClienteAdapter(this, lista);
+            PersonaAdapter adapter=new PersonaAdapter(this, lista);
             listView.setAdapter(adapter);
 
         } catch (JSONException e) {
@@ -104,8 +104,6 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
             dialog.hide();
             Log.d("ERROR: ", e.toString());
         }
-
     }
-
 }
 
