@@ -1,26 +1,19 @@
 package com.example.jesus.veterinaria;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +25,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
     ProgressDialog dialog;
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
-    ArrayList<Cliente> lista;
+    ArrayList<ClienteModelo> lista;
     ImageButton btnMas;
     Intent cargar;
     @Override
@@ -45,7 +38,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
         cargarWebService();
 
 
-        lista = new ArrayList<Cliente>();
+        lista = new ArrayList<ClienteModelo>();
 
         btnMas = (ImageButton) findViewById(R.id.principalClientesAdd);
 
@@ -86,7 +79,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
 
     @Override
     public void onResponse(JSONArray response) {
-        Cliente cliente = null;
+        ClienteModelo cliente = null;
 
         try {
             for (int i=0;i<response.length();i++){
@@ -96,7 +89,7 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
                 String rfc = jsonObject.optString("pk");
                 JSONObject fields = jsonObject.getJSONObject("fields");
                 String name = fields.optString("nombre_cliente");
-                cliente=new Cliente(rfc, name);
+                cliente=new ClienteModelo(rfc, name);
 
                 lista.add(cliente);
             }

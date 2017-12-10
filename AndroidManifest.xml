@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jesus.veterinaria">
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +24,13 @@
             android:name=".ListaClientes"
             android:label="@string/title_activity_lista_clientes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Reistro_Cliente"></activity>
+        <activity android:name=".Reistro_Cliente" />
+        <activity android:name=".registro_mascota" />
+        <activity android:name=".registro_historial" />
+        <activity android:name=".registro_medico" />
+        <activity android:name=".Medicos" />
+        <activity android:name=".Mascotas" />
+        <activity android:name=".Servicios"></activity>
     </application>
 
 </manifest>

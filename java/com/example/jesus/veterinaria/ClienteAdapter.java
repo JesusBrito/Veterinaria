@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,13 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by Fernando on 08/12/2017.
  */
-
 public class ClienteAdapter extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<Cliente> items;
+    protected ArrayList<ClienteModelo> items;
 
-    public ClienteAdapter (Activity activity, ArrayList<Cliente> items) {
+    public ClienteAdapter (Activity activity, ArrayList<ClienteModelo> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -28,12 +26,11 @@ public class ClienteAdapter extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<Cliente> clientes) {
+    public void addAll(ArrayList<ClienteModelo> clientes) {
         for (int i = 0; i < clientes.size(); i++) {
             items.add(clientes.get(i));
         }
     }
-
     @Override
     public int getCount() {
         return items.size();
@@ -58,16 +55,12 @@ public class ClienteAdapter extends BaseAdapter {
             v = inf.inflate(R.layout.item_list, null);
         }
 
-        Cliente cliente = items.get(position);
+        ClienteModelo cliente = items.get(position);
 
         TextView title = (TextView) v.findViewById(R.id.name);
         title.setText(cliente.getName());
         TextView id = (TextView) v.findViewById(R.id.id);
         id.setText(cliente.getId());
-
-//        ImageView imagen = (ImageView) v.findViewById(R.id.imageView);
-//        imagen.setImageDrawable(dir.getImage());
-
         return v;
     }
 }

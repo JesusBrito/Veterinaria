@@ -2,17 +2,17 @@ package com.example.jesus.veterinaria;
 
 
 
-public class Cliente {
+public class ClienteModelo {
 
     private String name;
     private String id;
     //private Drawable image;
 
-    public Cliente() {
+    public ClienteModelo() {
         super();
     }
 
-    public Cliente(String id, String name) {
+    public ClienteModelo(String id, String name) {
         super();
         this.name = name;
         //this.image = image;

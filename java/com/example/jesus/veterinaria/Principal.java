@@ -24,8 +24,44 @@ public class Principal extends AppCompatActivity {
                     }
                 }
         );
+        btnMascotas.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaMascotas();
+                    }
+                }
+        );
+        btnMedicos.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaMedicos();
+                    }
+                }
+        );
+        btnServicios.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaServicios();
+                    }
+                }
+        );
     }
 
+    private void cargaServicios() {
+        Cargar = new Intent(this, Servicios.class);
+        this.startActivity(Cargar);
+    }
+    private void cargaMedicos() {
+        Cargar = new Intent(this, Medicos.class);
+        this.startActivity(Cargar);
+    }
+    private void cargaMascotas() {
+        Cargar = new Intent(this, Mascotas.class);
+        this.startActivity(Cargar);
+    }
     private void cargaClientes() {
         Cargar = new Intent(this, Clientes.class);
         this.startActivity(Cargar);

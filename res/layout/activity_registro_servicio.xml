@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:configChanges="orientation|keyboardHidden"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registro de Servicios"
+                android:textSize="30dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="25dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="3dp" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/service"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/activity_registro_historial_txtCve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="20"
+                    android:hint="Clave de servicio"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/activity_registro_cliente_btnCamara"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:onClick="btnCamara_click" />
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="8dp"
+                android:layout_height="20dp" />
+            <EditText
+                android:id="@+id/activity_registro_historial_txtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="20"
+                android:hint="Descripcion"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="8dp"
+                android:layout_height="20dp" />
+            <EditText
+                android:id="@+id/activity_registro_historial_txtPeriodicidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="20"
+                android:hint="Precio"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="70dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/activity_registro_historial_btnCancelar"
+                android:layout_width="150dp"
+                android:layout_height="65dp"
+                android:background="@android:color/darker_gray"
+                android:ems="20"
+                android:text="Cancelar"
+                android:textColor="@android:color/white"
+                android:onClick="btnCancel_click"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/activity_registro_historial_btnGuardar"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_green_light"
+                android:ems="20"
+                android:onClick="btnGuardar_click"
+                android:textSize="15dp"
+                android:text="Guardar"
+                android:textColor="@android:color/white"
+                android:layout_weight="0.72" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
