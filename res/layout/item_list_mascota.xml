@@ -15,11 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:hint="Id"
+        android:hint="rfc"
         android:textSize="25sp"
         android:layout_alignBottom="@+id/textView"
-        android:layout_alignRight="@+id/rfc"
-        android:layout_alignEnd="@+id/rfc" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/name"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:hint="rfc"
+        android:hint="id"
         android:textSize="25sp"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignRight="@+id/name"
