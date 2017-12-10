@@ -30,22 +30,17 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
     ArrayList<ServicioModelo> lista;
-    ImageButton btnMas;
+    ImageButton btnMas, btnRegresar, btnHome;
     Intent cargar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicios);
-        listView = (ListView) findViewById(R.id.listView);
+        inicializaComponentes();
         request = Volley.newRequestQueue(this);
-
         cargarWebService();
-
-
         lista = new ArrayList<ServicioModelo>();
-
-        btnMas = (ImageButton) findViewById(R.id.principalServicioAdd);
 
         btnMas.setOnClickListener(
                 new View.OnClickListener() {
@@ -55,8 +50,36 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
                     }
                 }
         );
+
+        btnRegresar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
+                    }
+                }
+        );
+        btnHome.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
+                    }
+                }
+        );
     }
 
+    private void cargaHome() {
+        cargar = new Intent(this, Principal.class);
+        this.startActivity(cargar);
+    }
+
+    private void inicializaComponentes(){
+        listView = (ListView) findViewById(R.id.listView);
+        btnMas = (ImageButton) findViewById(R.id.principalServicioAdd);
+        btnRegresar= (ImageButton) findViewById(R.id.activityServiciosBtnRegresar);
+        btnHome=(ImageButton) findViewById(R.id.activityServiciosBtnHome);
+    }
 
     private void agregarMascota() {
 

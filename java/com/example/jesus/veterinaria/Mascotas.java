@@ -30,23 +30,17 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
     ArrayList<MascotaModelo> lista;
-    ImageButton btnMas;
+    ImageButton btnMas, btnHome, btnRegresar ;
     Intent cargar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
-        listView = (ListView) findViewById(R.id.listView);
+        inicializaComponentes();
         request = Volley.newRequestQueue(this);
-
         cargarWebService();
-
-
         lista = new ArrayList<MascotaModelo>();
-
-        btnMas = (ImageButton) findViewById(R.id.principalMascotasAdd);
-
         btnMas.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -55,6 +49,35 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
                     }
                 }
         );
+
+        btnRegresar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
+                    }
+                }
+        );
+        btnHome.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
+                    }
+                }
+        );
+    }
+
+    private void cargaHome() {
+        cargar = new Intent(this, Principal.class);
+        this.startActivity(cargar);
+    }
+
+    private void inicializaComponentes(){
+        listView = (ListView) findViewById(R.id.listView);
+        btnMas = (ImageButton) findViewById(R.id.principalMascotasAdd);
+        btnRegresar= (ImageButton) findViewById(R.id.activityMascotassBtnRegresar);
+        btnHome=(ImageButton) findViewById(R.id.activityMascotasBtnHome);
     }
 
     private void agregarMascota() {

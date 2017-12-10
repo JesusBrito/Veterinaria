@@ -29,34 +29,55 @@ public class Medicos extends AppCompatActivity  implements Response.Listener<JSO
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
     ArrayList<PersonaModelo> lista;
-    ImageButton btnMas;
+    ImageButton btnMas, btnRegresar, btnHome;
     Intent cargar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicos);
-
-        listView = (ListView) findViewById(R.id.listView);
+        inicializaComponentes();
         request = Volley.newRequestQueue(this);
-
         cargarWebService();
-
-
         lista = new ArrayList<PersonaModelo>();
-
-        btnMas = (ImageButton) findViewById(R.id.principalMedicoAdd);
 
         btnMas.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        agregarCliente();
+                        agregarMedico();
+                    }
+                }
+        );
+        btnRegresar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
+                    }
+                }
+        );
+        btnHome.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargaHome();
                     }
                 }
         );
     }
 
-    private void agregarCliente() {
+    private void cargaHome() {
+        cargar = new Intent(this, Principal.class);
+        this.startActivity(cargar);
+    }
+
+    private void inicializaComponentes(){
+        listView = (ListView) findViewById(R.id.listView);
+        btnMas = (ImageButton) findViewById(R.id.principalMedicoAdd);
+        btnRegresar= (ImageButton) findViewById(R.id.activityMedicosBtnRegresar);
+        btnHome=(ImageButton) findViewById(R.id.activityMedicosBtnHome);
+    }
+    private void agregarMedico() {
 
         cargar = new Intent(this, registro_medico.class);
         this.startActivity(cargar);

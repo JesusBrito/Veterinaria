@@ -11,6 +11,58 @@
         android:layout_height="wrap_content"
         android:configChanges="orientation|keyboardHidden"
         android:orientation="vertical">
+        <!--Cabecera-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verde_azulado"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+            <!--Boton REGRESAR-->
+            <LinearLayout
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="left"
+                android:layout_marginRight="40dp">
+                <ImageButton
+                    android:id="@+id/activityRegistroMascotasBtnRegresar"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@mipmap/regresar"/>
+            </LinearLayout>
+            <!--Boton REGRESAR-->
+            <!--TEXTO-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Veterinaria"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <!--TEXTO-->
+            <!--Boton HOME-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="right">
+                <ImageButton
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/activityRegistroMascotasBtnHome"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@mipmap/home"/>
+            </LinearLayout>
+            <!--Boton HOME-->
+        </LinearLayout>
+        <!--Fin Cabecera-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,7 +248,7 @@
                 android:text="Cancelar"
                 android:textColor="@android:color/white"
                 android:onClick="btnCancel_click"
-                android:textSize="15dp" />
+                android:textSize="20dp" />
             <TextView
                 android:layout_width="25dp"
                 android:layout_height="20dp" />
@@ -205,10 +257,10 @@
                 android:id="@+id/activity_registro_mascota_btnGuardar"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/verde_azulado"
                 android:ems="20"
                 android:onClick="btnGuardar_click"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:text="Guardar"
                 android:textColor="@android:color/white"
                 android:layout_weight="0.72" />
