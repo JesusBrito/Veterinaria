@@ -66,15 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/activity_registro_cliente_btnRegresar"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:background="@android:color/transparent"
-                android:onClick="btnRegresar_click" />
             <TextView
                 android:gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registro de medicos"
                 android:textSize="30dp"/>
@@ -99,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/activity_registro_cliente_txtNom"
+                    android:id="@+id/activity_registro_medico_txtNom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="20"
@@ -107,7 +101,7 @@
                     android:textColor="@android:color/background_dark"
                     android:textSize="20dp" />
                 <EditText
-                    android:id="@+id/activity_registro_cliente_txtApe"
+                    android:id="@+id/activity_registro_medico_txtApe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Apellidos"
@@ -138,7 +132,7 @@
                 android:layout_width="8dp"
                 android:layout_height="20dp" />
             <EditText
-                android:id="@+id/activity_registro_cliente_txtTel"
+                android:id="@+id/activity_registro_medico_txtTel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
@@ -155,7 +149,7 @@
                 android:layout_width="8dp"
                 android:layout_height="20dp" />
             <EditText
-                android:id="@+id/activity_registro_cliente_txtDirec"
+                android:id="@+id/activity_registro_medico_txtDirec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
@@ -174,7 +168,7 @@
                 android:layout_height="20dp" />
 
             <EditText
-                android:id="@+id/activity_registro_cliente_txtEmail"
+                android:id="@+id/activity_registro_medico_txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
@@ -191,7 +185,7 @@
                 android:layout_width="8dp"
                 android:layout_height="20dp" />
             <EditText
-                android:id="@+id/activity_registro_cliente_txtRFC"
+                android:id="@+id/activity_registro_medico_txtRFC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
