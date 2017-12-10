@@ -71,7 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Servicios"
-                android:textSize="45dp"/>
+                android:textSize="45dp"
+                android:textColor="@color/verde_azulado"/>
             <ImageButton
                 android:layout_marginLeft="60dp"
                 android:id="@+id/principalServicioAdd"
@@ -92,7 +93,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="________________"
-                android:textSize="45dp"/>
+                android:textSize="45dp"
+                android:textColor="@color/azul"/>
         </LinearLayout>
         <ListView
             android:id="@+id/listView"

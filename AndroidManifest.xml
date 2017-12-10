@@ -28,6 +28,7 @@
         <activity android:name=".Mascotas" />
         <activity android:name=".Servicios" />
         <activity android:name=".Historial_mascota" />
+        <activity android:name=".DetailActivity"/>
         <activity android:name=".Registro_cita"></activity>
     </application>
 

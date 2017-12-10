@@ -25,6 +25,7 @@
                 android:gravity="left"
                 android:layout_marginRight="40dp">
                 <ImageButton
+                    android:id="@+id/activityRegistroMedicoBtnRegresar"
                     android:layout_marginLeft="15dp"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -53,7 +54,7 @@
                 android:gravity="right">
                 <ImageButton
                     android:layout_marginRight="15dp"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/activityRegistroMedicoBtnHome"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:background="@mipmap/home"/>
@@ -210,21 +211,20 @@
                 android:layout_height="30dp" />
 
             <Button
-                android:id="@+id/activity_registro_cliente_btnCancelar"
+                android:id="@+id/activity_registro_medico_btnCancelar"
                 android:layout_width="150dp"
                 android:layout_height="65dp"
                 android:background="@android:color/darker_gray"
                 android:ems="20"
                 android:text="Cancelar"
                 android:textColor="@android:color/white"
-                android:onClick="btnCancel_click"
                 android:textSize="20dp" />
             <TextView
                 android:layout_width="25dp"
                 android:layout_height="20dp" />
 
             <Button
-                android:id="@+id/activity_registro_cliente_btnGuardar"
+                android:id="@+id/activity_registro_medico_btnGuardar"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:background="@color/verde_azulado"

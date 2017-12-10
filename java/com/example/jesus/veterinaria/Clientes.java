@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -117,6 +118,18 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
             dialog.hide();
             PersonaAdapter adapter=new PersonaAdapter(this, lista);
             listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener(
+                    new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                            i.putExtra("id", lista.get(position).getId());
+                            startActivity(i);
+                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                        }
+                    }
+            );
 
         } catch (JSONException e) {
             e.printStackTrace();
