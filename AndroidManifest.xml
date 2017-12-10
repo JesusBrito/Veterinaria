@@ -27,7 +27,8 @@
         <activity android:name=".Medicos" />
         <activity android:name=".Mascotas" />
         <activity android:name=".Servicios" />
-        <activity android:name=".Historial_mascota"></activity>
+        <activity android:name=".Historial_mascota" />
+        <activity android:name=".Registro_cita"></activity>
     </application>
 
 </manifest>
