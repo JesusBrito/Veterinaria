@@ -28,8 +28,10 @@
         <activity android:name=".Mascotas" />
         <activity android:name=".Servicios" />
         <activity android:name=".Historial_mascota" />
-        <activity android:name=".DetailActivity"/>
-        <activity android:name=".Registro_cita"></activity>
+        <activity android:name=".Modificar_cliente" />
+        <activity android:name=".Registro_cita" />
+        <activity android:name=".Modificar_mascota" />
+        <activity android:name=".Historial_cliente"></activity>
     </application>
 
 </manifest>

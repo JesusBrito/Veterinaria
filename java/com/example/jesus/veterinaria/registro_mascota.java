@@ -25,16 +25,21 @@ public class registro_mascota extends AppCompatActivity implements Response.List
     EditText txtNombre, txtEspecie, txtRaza, txtRfcCliente, txtColor, txtTamaño, txtSenia, txtNacimiento;
     String cveMascota="";
     Intent cargar;
-
+    String rfc;
     ProgressDialog progreso;
     RequestQueue request;
     JsonArrayRequest JsonArrayRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent i = getIntent();
+        rfc = i.getStringExtra("rfc");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_mascota);
         request= Volley.newRequestQueue(this);
         inicializaComponentes();
+
+        txtRfcCliente.setText(rfc);
 
         btnRegresar.setOnClickListener(
                 new View.OnClickListener() {

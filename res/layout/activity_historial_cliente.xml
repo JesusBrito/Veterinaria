@@ -21,7 +21,7 @@
             android:gravity="left"
             android:layout_marginRight="40dp">
             <ImageButton
-                android:id="@+id/activityServiciosBtnRegresar"
+                android:id="@+id/activityHistorialClienteBtnRegresar"
                 android:layout_marginLeft="15dp"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -50,7 +50,7 @@
             android:gravity="right">
             <ImageButton
                 android:layout_marginRight="15dp"
-                android:id="@+id/activityServiciosBtnHome"
+                android:id="@+id/activityHistorialClienteBtnHome"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:background="@mipmap/home"/>
@@ -79,11 +79,11 @@
                     android:gravity="center"
                     android:layout_marginLeft="15dp">
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblNombre"
+                        android:id="@+id/activity_historial_cliente_lblNombre"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre-Rfc"
+                        android:text="Nombre"
                         android:textSize="30dp"/>
                 </LinearLayout>
                 <!--TEXTO-->
@@ -97,7 +97,7 @@
                     android:gravity="right"
                     android:layout_marginRight="15dp">
                     <Button
-                        android:id="@+id/activity_historial_mascota_btnEditar"
+                        android:id="@+id/activity_historial_cliente_btnEditar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Editar"
@@ -117,51 +117,37 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
-                    android:background="@mipmap/dog"/>
+                    android:background="@mipmap/foto"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblRaza"
+                        android:id="@+id/activity_historial_cliente_lblRfc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Raza"
+                        android:hint="rfc"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20dp" />
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblespecie"
+                        android:id="@+id/activity_historial_cliente_lblCorreo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Especie"
+                        android:hint="correo"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20dp" />
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblFecha"
+                        android:id="@+id/activity_historial_cliente_lblTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Fecha"
+                        android:hint="Telefono"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20dp" />
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblColor"
+                        android:id="@+id/activity_historial_cliente_lblDireccion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Color"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:id="@+id/activity_historial_mascota_lblTamaño"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Tamaño-Seña"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
-                    <TextView
-                        android:id="@+id/activity_historial_mascota_lblDueño"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Dueño"
+                        android:hint="direccion"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20dp" />
                 </LinearLayout>
@@ -174,12 +160,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Historial"
+                    android:text="Mascotas"
                     android:textColor="@color/verde_azulado"
                     android:textSize="45dp"/>
                 <ImageButton
                     android:layout_marginLeft="60dp"
-                    android:id="@+id/principalServicioAdd"
+                    android:id="@+id/activity_historial_cliente_btnAddMascota"
                     android:layout_height="50dp"
                     android:layout_width="50dp"
                     android:layout_gravity="right"

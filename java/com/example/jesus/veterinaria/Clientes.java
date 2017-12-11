@@ -118,19 +118,17 @@ public class Clientes extends AppCompatActivity implements Response.Listener<JSO
             dialog.hide();
             PersonaAdapter adapter=new PersonaAdapter(this, lista);
             listView.setAdapter(adapter);
-
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                            Intent i = new Intent(getApplicationContext(), Historial_cliente.class);
                             i.putExtra("id", lista.get(position).getId());
                             startActivity(i);
                             overridePendingTransition(R.anim.left_in, R.anim.left_out);
                         }
                     }
             );
-
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, "No se ha podido establecer conexión con el servidor" +
