@@ -94,8 +94,10 @@ public class registro_mascota extends AppCompatActivity implements Response.List
             progreso.show();
             String rfcCliente=txtRfcCliente.getText().toString();
             String nombreMascota=txtNombre.getText().toString();
+            String nombreMa=nombreMascota.replace(" ","");
+            rfcCliente=rfcCliente.replace(" ","");
             for (int i=0; i<3;i++){
-                cveMascota+=nombreMascota.charAt(i);
+                cveMascota+=nombreMa.charAt(i);
             }
             cveMascota+="_";
             for (int i=0; i<3;i++){
@@ -110,6 +112,7 @@ public class registro_mascota extends AppCompatActivity implements Response.List
             url= url.replace(" ", "%20");
             JsonArrayRequest= new JsonArrayRequest(Request.Method.GET,url,null,this,this);
             request.add(JsonArrayRequest);
+            cveMascota="";
         }
     }
 

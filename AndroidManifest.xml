@@ -32,7 +32,8 @@
         <activity android:name=".Registro_cita" />
         <activity android:name=".Modificar_mascota" />
         <activity android:name=".Historial_cliente" />
-        <activity android:name=".detalle_medico"></activity>
+        <activity android:name=".Modificar_medico" />
+        <activity android:name=".Modificar_servicio"></activity>
     </application>
 
 </manifest>

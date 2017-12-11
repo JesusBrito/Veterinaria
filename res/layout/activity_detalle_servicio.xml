@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.jesus.veterinaria.Modificar_medico">
+    tools:context="com.example.jesus.veterinaria.Modificar_servicio">
     <!--Cabecera-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:gravity="left"
             android:layout_marginRight="40dp">
             <ImageButton
-                android:id="@+id/activityDetalleMedicoBtnRegresar"
+                android:id="@+id/activityDetalleServicioBtnRegresar"
                 android:layout_marginLeft="15dp"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -49,7 +49,7 @@
             android:gravity="right">
             <ImageButton
                 android:layout_marginRight="15dp"
-                android:id="@+id/activityDetalleMedicoBtnHome"
+                android:id="@+id/activityDetalleServicioBtnHome"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:background="@mipmap/home"/>
@@ -73,10 +73,11 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Modificar medico"
-                    android:id="@+id/activityDetalleMedicoChEditar"
+                    android:text="Modificar servicio"
+                    android:id="@+id/activityDetalleServicioChEditar"
                     android:layout_marginRight="10dp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,11 +87,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
-                    android:text="Rfc:"
+                    android:text="Clave:"
                     android:gravity="bottom"/>
                 <EditText
                     android:gravity="bottom"
-                    android:id="@+id/detalle_medico_txt_rfc"
+                    android:id="@+id/detalle_servicio_txt_cve"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
@@ -111,7 +112,7 @@
                     android:text="Nombre:"
                     android:gravity="bottom"/>
                 <EditText
-                    android:id="@+id/detalle_medico_txt_nombre"
+                    android:id="@+id/detalle_servicio_txt_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
@@ -129,75 +130,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Direccion:"
+                    android:text="Precio:"
                     android:textSize="30sp" />
 
                 <EditText
-                    android:id="@+id/detalle_medico_txt_direccion"
+                    android:id="@+id/detalle_servicio_txt_precio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:text="Telefono:"
-                    android:gravity="bottom"/>
-                <EditText
-                    android:id="@+id/detalle_medico_txt_telefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:text="Email:"
-                    android:gravity="bottom"/>
-                <EditText
-                    android:id="@+id/detalle_medico_txt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
                 <Button
-                    android:id="@+id/activityDetalleMedicoBtnEliminar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/rojo"
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    android:layout_margin="10dp"
-                    android:text="Eliminar"
-                    android:enabled="true"/>
-                <Button
-                    android:id="@+id/activityDetalleMedicoBtnGuardar"
+                    android:id="@+id/activityDetalleServicioBtnGuardar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/verde_azulado"
