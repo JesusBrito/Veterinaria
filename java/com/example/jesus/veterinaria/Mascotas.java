@@ -1,5 +1,6 @@
 package com.example.jesus.veterinaria;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Mascotas extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
+public class Mascotas extends AppCompatActivity{
 
     ListView listView;
     ProgressDialog dialog;
@@ -33,7 +36,9 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
     ArrayList<MascotaModelo> lista;
     ImageButton btnMas, btnHome, btnRegresar ;
     Intent cargar;
-
+    Button btnBuscar;
+    EditText txtCve;
+    String cveMascota;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,77 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
                     }
                 }
         );
+
+        btnBuscar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargarWebServiceRfc();
+                    }
+                }
+        );
+    }
+
+    private void cargarWebServiceRfc() {
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Consultando BD");
+        dialog.show();
+        cveMascota= txtCve.getText().toString();
+        String url = "https://veterinary-clinic-ws.herokuapp.com/mascotas/"+cveMascota;
+        Activity activity = this;
+        final Activity finalActivity = activity;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        MascotaModelo mascota = null;
+                        lista.clear();
+                        try {
+                            for (int i=0;i<response.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = response.getJSONObject(i);
+                                //TODO
+                                String rfc = jsonObject.optString("pk");
+                                JSONObject fields = jsonObject.getJSONObject("fields");
+                                String id = fields.optString("rfc_cliente");
+                                String name = fields.optString("nombre_mascota");
+                                mascota=new MascotaModelo(id, name,rfc);
+                                lista.add(mascota);
+                            }
+                            dialog.hide();
+                            MascotaAdapter adapter=new MascotaAdapter(finalActivity, lista);
+                            listView.setAdapter(adapter);
+
+                            listView.setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent i = new Intent(getApplicationContext(), Historial_mascota.class);
+                                            i.putExtra("id", lista.get(position).getRfc());
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                                        }
+                                    }
+                            );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "No se ha podido establecer conexión con el servidor" +
+                                    " "+response, Toast.LENGTH_LONG).show();
+                            dialog.hide();
+                            Log.d("ERROR: ", e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "La mascota no se encuentra registrada "+error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.e("ERROR: ", error.toString());
+                        dialog.hide();
+                    }
+                });
+        request.add(jsonArrayRequest);
     }
 
     private void cargaHome() {
@@ -79,10 +155,11 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
         btnMas = (ImageButton) findViewById(R.id.principalMascotasAdd);
         btnRegresar= (ImageButton) findViewById(R.id.activityMascotassBtnRegresar);
         btnHome=(ImageButton) findViewById(R.id.activityMascotasBtnHome);
+        btnBuscar=(Button)findViewById(R.id.activityMascotasBtnBuscar);
+        txtCve=(EditText)findViewById(R.id.activityMascotastxtIdMascota);
     }
 
     private void agregarMascota() {
-
         cargar = new Intent(this, registro_mascota.class);
         this.startActivity(cargar);
     }
@@ -91,58 +168,60 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
         dialog = new ProgressDialog(this);
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
-
+        cveMascota= txtCve.getText().toString();
         String url = "https://veterinary-clinic-ws.herokuapp.com/mascotas/";
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,this,this);
-        request.add(jsonArrayRequest);
-    }
+        Activity activity = this;
+        final Activity finalActivity = activity;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        MascotaModelo mascota = null;
+                        lista.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = null;
+                                jsonObject = response.getJSONObject(i);
+                                //TODO
+                                String rfc = jsonObject.optString("pk");
+                                JSONObject fields = jsonObject.getJSONObject("fields");
+                                String id = fields.optString("rfc_cliente");
+                                String name = fields.optString("nombre_mascota");
+                                mascota = new MascotaModelo(id, name, rfc);
+                                lista.add(mascota);
+                            }
+                            dialog.hide();
+                            MascotaAdapter adapter = new MascotaAdapter(finalActivity, lista);
+                            listView.setAdapter(adapter);
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this, "No se puede conectar "+error.toString(), Toast.LENGTH_LONG).show();
-        System.out.println();
-        Log.e("ERROR: ", error.toString());
-        dialog.hide();
-    }
-
-    @Override
-    public void onResponse(JSONArray response) {
-        MascotaModelo mascota = null;
-
-        try {
-            for (int i=0;i<response.length();i++){
-                JSONObject jsonObject=null;
-                jsonObject = response.getJSONObject(i);
-                //TODO
-                String rfc = jsonObject.optString("pk");
-                JSONObject fields = jsonObject.getJSONObject("fields");
-                String id = fields.optString("rfc_cliente");
-                String name = fields.optString("nombre_mascota");
-                mascota=new MascotaModelo(id, name,rfc);
-                lista.add(mascota);
-            }
-            dialog.hide();
-            MascotaAdapter adapter=new MascotaAdapter(this, lista);
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener(
-                    new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent i = new Intent(getApplicationContext(), Historial_mascota.class);
-                            i.putExtra("id", lista.get(position).getRfc());
-                            startActivity(i);
-                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                            listView.setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent i = new Intent(getApplicationContext(), Historial_mascota.class);
+                                            i.putExtra("id", lista.get(position).getRfc());
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                                        }
+                                    }
+                            );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "No se ha podido establecer conexión con el servidor" +
+                                    " " + response, Toast.LENGTH_LONG).show();
+                            dialog.hide();
+                            Log.d("ERROR: ", e.toString());
                         }
                     }
-            );
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "No se ha podido establecer conexión con el servidor" +
-                    " "+response, Toast.LENGTH_LONG).show();
-            dialog.hide();
-            Log.d("ERROR: ", e.toString());
-        }
-
+                }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), "Error en la consulta  "+error.toString(), Toast.LENGTH_LONG).show();
+                            System.out.println();
+                            Log.e("ERROR: ", error.toString());
+                            dialog.hide();
+                        }
+                });
+        request.add(jsonArrayRequest);
     }
 }

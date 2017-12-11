@@ -23,7 +23,7 @@ public class registro_servicio extends AppCompatActivity implements Response.Lis
     Button btnGuardar, btnCancelar;
     ImageButton btnRegresar, btnHome;
     Intent cargar;
-    EditText txtCve, txtNombre, txtPrecio;
+    EditText txtNombre, txtPrecio;
 
     ProgressDialog progreso;
     RequestQueue request;
@@ -72,16 +72,15 @@ public class registro_servicio extends AppCompatActivity implements Response.Lis
     }
 
     private void cargarWebService() {
-        if(txtCve.getText().toString().equals("")||
-                txtNombre.getText().toString().equals("")||
-                txtPrecio.getText().toString().equals("")){
+        if(txtNombre.getText().toString().equals("")||
+           txtPrecio.getText().toString().equals("")){
             Toast.makeText(this,"Todos los campos deben de estan correctamente llenados",Toast.LENGTH_SHORT);
         }else{
             progreso= new ProgressDialog(this);
             progreso.setMessage("Cargando...");
             progreso.show();
-            String url ="https://veterinary-clinic-ws.herokuapp.com/servicios/create/"+txtCve.getText().toString()+"" +
-                    "/"+txtNombre.getText().toString()+"/"+txtPrecio.getText().toString()+"/";
+            String url ="https://veterinary-clinic-ws.herokuapp.com/servicios/create/"+txtNombre.getText().toString()
+                    +"/"+txtPrecio.getText().toString()+"/";
             url= url.replace(" ", "%20");
             JsonArrayRequest= new JsonArrayRequest(Request.Method.GET,url,null,this,this);
             request.add(JsonArrayRequest);
@@ -93,7 +92,6 @@ public class registro_servicio extends AppCompatActivity implements Response.Lis
         btnHome=(ImageButton) findViewById(R.id.activityRegistroServicioBtnHome);
         btnGuardar=(Button) findViewById(R.id.activity_registro_servicio_btnGuardar);
         btnCancelar=(Button) findViewById(R.id.activity_registro_servicio_btnCancelar);
-        txtCve=(EditText) findViewById(R.id.activity_registro_servicio_txtCve);
         txtPrecio=(EditText) findViewById(R.id.activity_registro_servicio_txtPrecio);
         txtNombre=(EditText) findViewById(R.id.activity_registro_servicio_txtNombre);
     }
@@ -121,7 +119,6 @@ public class registro_servicio extends AppCompatActivity implements Response.Lis
         progreso.hide();
         Toast.makeText(this,"Registro agregado exitosamente",Toast.LENGTH_SHORT).show();
         txtNombre.setText("");
-        txtCve.setText("");
         txtPrecio.setText("");
         txtNombre.setText("");
     }

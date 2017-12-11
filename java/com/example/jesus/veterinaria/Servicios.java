@@ -1,5 +1,6 @@
 package com.example.jesus.veterinaria;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Servicios extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener  {
+public class Servicios extends AppCompatActivity{
 
     ListView listView;
     ProgressDialog dialog;
@@ -33,7 +36,9 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
     ArrayList<ServicioModelo> lista;
     ImageButton btnMas, btnRegresar, btnHome;
     Intent cargar;
-
+    Button btnBuscar;
+    EditText txtCve;
+    String Cve="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,14 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
                     }
                 }
         );
+        btnBuscar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cargarWebServiceCve();
+                    }
+                }
+        );
     }
 
     private void cargaHome() {
@@ -80,6 +93,8 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
         btnMas = (ImageButton) findViewById(R.id.principalServicioAdd);
         btnRegresar= (ImageButton) findViewById(R.id.activityServiciosBtnRegresar);
         btnHome=(ImageButton) findViewById(R.id.activityServiciosBtnHome);
+        txtCve=(EditText) findViewById(R.id.activityServiciosCve);
+        btnBuscar=(Button) findViewById(R.id.activityServiciosBtnBuscar);
     }
 
     private void agregarMascota() {
@@ -94,57 +109,126 @@ public class Servicios extends AppCompatActivity implements Response.Listener<JS
         dialog.show();
 
         String url = "https://veterinary-clinic-ws.herokuapp.com/servicios/";
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,this,this);
+        Activity activity = this;
+        final Activity finalActivity = activity;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ServicioModelo servicio = null;
+                        lista.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = null;
+                                jsonObject = response.getJSONObject(i);
+                                //TODO
+                                String id = jsonObject.optString("pk");
+                                JSONObject fields = jsonObject.getJSONObject("fields");
+                                String name = fields.optString("descripcion_servicio");
+                                String precio = fields.optString("precio_servicio");
+                                servicio = new ServicioModelo(id, name, precio);
+                                lista.add(servicio);
+                            }
+                            dialog.hide();
+                            ServicioAdapter adapter = new ServicioAdapter(finalActivity, lista);
+                            listView.setAdapter(adapter);
+                            listView.setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent i = new Intent(getApplicationContext(), Modificar_servicio.class);
+                                            i.putExtra("id", lista.get(position).getId());
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                                        }
+                                    }
+                            );
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "No se ha podido establecer conexión con el servidor" +
+                                    " " + response, Toast.LENGTH_LONG).show();
+                            dialog.hide();
+                            Log.d("ERROR: ", e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "No se puede conectar "+error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.e("ERROR: ", error.toString());
+                        dialog.hide();
+                    }
+                }
+        );
         request.add(jsonArrayRequest);
 //        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this, "No se puede conectar "+error.toString(), Toast.LENGTH_LONG).show();
-        System.out.println();
-        Log.e("ERROR: ", error.toString());
-        dialog.hide();
-    }
+    private void cargarWebServiceCve() {
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Consultando Imagenes");
+        dialog.show();
+        Cve=txtCve.getText().toString();
+        String url = "https://veterinary-clinic-ws.herokuapp.com/servicios/"+Cve;
+        Activity activity = this;
+        final Activity finalActivity = activity;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ServicioModelo servicio = null;
+                        lista.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = null;
+                                jsonObject = response.getJSONObject(i);
+                                //TODO
+                                String id = jsonObject.optString("pk");
+                                JSONObject fields = jsonObject.getJSONObject("fields");
+                                String name = fields.optString("descripcion_servicio");
+                                String precio = fields.optString("precio_servicio");
+                                servicio = new ServicioModelo(id, name, precio);
+                                lista.add(servicio);
+                            }
+                            dialog.hide();
+                            ServicioAdapter adapter = new ServicioAdapter(finalActivity, lista);
+                            listView.setAdapter(adapter);
+                            listView.setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent i = new Intent(getApplicationContext(), Modificar_servicio.class);
+                                            i.putExtra("id", lista.get(position).getId());
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                                        }
+                                    }
+                            );
 
-    @Override
-    public void onResponse(JSONArray response) {
-        ServicioModelo servicio = null;
-
-        try {
-            for (int i=0;i<response.length();i++){
-                JSONObject jsonObject=null;
-                jsonObject = response.getJSONObject(i);
-                //TODO
-                String id = jsonObject.optString("pk");
-                JSONObject fields = jsonObject.getJSONObject("fields");
-                String name = fields.optString("descripcion_servicio");
-                String precio = fields.optString("precio_servicio");
-                servicio=new ServicioModelo(id, name,precio);
-                lista.add(servicio);
-            }
-            dialog.hide();
-            ServicioAdapter adapter=new ServicioAdapter(this, lista);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(
-                    new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent i = new Intent(getApplicationContext(), Modificar_servicio.class);
-                            i.putExtra("id", lista.get(position).getId());
-                            startActivity(i);
-                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "No se ha podido establecer conexión con el servidor" +
+                                    " " + response, Toast.LENGTH_LONG).show();
+                            dialog.hide();
+                            Log.d("ERROR: ", e.toString());
                         }
                     }
-            );
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "No se ha podido establecer conexión con el servidor" +
-                    " "+response, Toast.LENGTH_LONG).show();
-            dialog.hide();
-            Log.d("ERROR: ", e.toString());
-        }
-
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "El servicio no esta registrado "+error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.e("ERROR: ", error.toString());
+                        dialog.hide();
+                    }
+                }
+        );
+        request.add(jsonArrayRequest);
+//        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
+
 }

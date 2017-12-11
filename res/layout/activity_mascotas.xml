@@ -83,18 +83,47 @@
             </ImageButton>
         </LinearLayout>
 
+
+        <!--Busqueda-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
+            <!--TEXTO-->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="________________"
-                android:textColor="@color/azul"
-                android:textSize="45dp"/>
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/activityMascotastxtIdMascota"
+                    android:layout_width="230dp"
+                    android:layout_height="match_parent"
+                    android:hint="Clave de mascota"
+                    android:textSize="25dp"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"/>
+            </LinearLayout>
+            <!--TEXTO-->
+            <!--Boton BUSCAR-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="right">
+                <Button
+                    android:id="@+id/activityMascotasBtnBuscar"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:background="@color/verde_azulado"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:text="Buscar"/>
+            </LinearLayout>
+            <!--Boton BUSCAR-->
         </LinearLayout>
         <ListView
             android:id="@+id/listView"

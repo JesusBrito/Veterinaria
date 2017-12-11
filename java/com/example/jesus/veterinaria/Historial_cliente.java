@@ -96,7 +96,7 @@ public class Historial_cliente extends AppCompatActivity implements Response.Lis
         txt_rfc = (TextView) findViewById(R.id.activity_historial_cliente_lblRfc);
         txt_telefono = (TextView) findViewById(R.id.activity_historial_cliente_lblTelefono);
         btn_regresar = (ImageButton) findViewById(R.id.activityHistorialClienteBtnRegresar);
-        btn_home  = (ImageButton) findViewById(R.id.activityHistorialClienteBtnRegresar);
+        btn_home  = (ImageButton) findViewById(R.id.activityHistorialClienteBtnHome);
         btnEditar =(Button) findViewById(R.id.activity_historial_cliente_btnEditar);
         btnAgregar = (ImageButton) findViewById(R.id.activity_historial_cliente_btnAddMascota);
     }

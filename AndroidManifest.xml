@@ -11,13 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Login"/>
         <activity android:name=".Principal" />
         <activity android:name=".Clientes" />
         <activity android:name=".registro_cliente" />
@@ -33,7 +27,14 @@
         <activity android:name=".Modificar_mascota" />
         <activity android:name=".Historial_cliente" />
         <activity android:name=".Modificar_medico" />
-        <activity android:name=".Modificar_servicio"></activity>
+        <activity android:name=".Modificar_servicio" />
+        <activity android:name=".Inicio"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
