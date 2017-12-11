@@ -145,8 +145,8 @@ public class Modificar_mascota extends AppCompatActivity {
             dialog.setMessage("Cargando...");
             dialog.show();
             String url = "https://veterinary-clinic-ws.herokuapp.com/mascotas/"+idMascota+"/update"+"/"
-                    +txt_rfc_cliente.getText().toString()+"/"+txt_especie.getText().toString()+"/"
-                    +txt_nombre.getText().toString()+"/"+txt_especie.getText().toString()+"/"
+                    +txt_nombre.getText().toString()+"/"
+                    +txt_especie.getText().toString()+"/"
                     +txt_raza.getText().toString()+"/"+txt_color.getText().toString()+"/"
                     +txt_tamaño.getText().toString()+"/"+txt_senia.getText().toString()+"/"
                     +txt_fecha.getText().toString()+"/";
