@@ -27,8 +27,8 @@
                 <ImageButton
                     android:id="@+id/activityClientesBtnRegresar"
                     android:layout_marginLeft="15dp"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
 
                     android:background="@mipmap/regresar"/>
             </LinearLayout>
@@ -56,8 +56,8 @@
                 <ImageButton
                     android:id="@+id/activityClientesBtnHome"
                     android:layout_marginRight="15dp"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:background="@mipmap/home"/>
             </LinearLayout>
             <!--Boton HOME-->
@@ -72,13 +72,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Clientes"
-                android:textSize="45dp"
+                android:textSize="35dp"
                 android:textColor="@color/verde_azulado"/>
             <ImageButton
                 android:layout_marginLeft="60dp"
                 android:id="@+id/principalClientesAdd"
-                android:layout_height="50dp"
-                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
                 android:layout_gravity="right"
                 android:background="@mipmap/imgplus">
             </ImageButton>
@@ -101,9 +101,9 @@
                     android:layout_width="230dp"
                     android:layout_height="match_parent"
                     android:hint="Rfc"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textColor="@android:color/black"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:layout_marginLeft="20dp"/>
             </LinearLayout>
             <!--TEXTO-->
@@ -117,7 +117,7 @@
                     android:id="@+id/activityClientesBtnBuscar"
                     android:layout_marginRight="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="55dp"
+                    android:layout_height="40dp"
                     android:background="@color/verde_azulado"
                     android:textColor="@android:color/white"
                     android:textSize="15dp"

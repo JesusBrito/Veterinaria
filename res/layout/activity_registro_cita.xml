@@ -25,8 +25,8 @@
             <ImageButton
                 android:id="@+id/activityRegistroClientesBtnRegresar"
                 android:layout_marginLeft="15dp"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/regresar"/>
         </LinearLayout>
         <!--Boton REGRESAR-->
@@ -53,8 +53,8 @@
             <ImageButton
                 android:id="@+id/activityRegistroClientesBtnHome"
                 android:layout_marginRight="15dp"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/home"/>
         </LinearLayout>
         <!--Boton HOME-->
@@ -143,24 +143,24 @@
                 android:layout_marginTop="15dp">
                 <Button
                     android:id="@+id/activity_registro_cliente_btnCancelar"
-                    android:layout_width="150dp"
-                    android:layout_height="65dp"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/darker_gray"
                     android:ems="20"
                     android:text="Cancelar"
                     android:textColor="@android:color/white"
-                    android:textSize="20dp" />
+                    android:textSize="16dp" />
                 <TextView
                     android:layout_width="25dp"
                     android:layout_height="20dp" />
 
                 <Button
                     android:id="@+id/activity_registro_cliente_btnGuardar"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/verde_azulado"
                     android:ems="20"
-                    android:textSize="20dp"
+                    android:textSize="16dp"
                     android:text="Guardar"
                     android:textColor="@android:color/white"
                     android:layout_weight="0.72" />

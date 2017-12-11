@@ -38,6 +38,7 @@ public class Historial_mascota extends AppCompatActivity implements Response.Lis
         Intent i = getIntent();
         idMascota = i.getStringExtra("id");
         inicializaComponentes();
+        System.out.println("ID DE LA MASCOTA:"+idMascota);
         btn_regresar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -115,7 +116,6 @@ public class Historial_mascota extends AppCompatActivity implements Response.Lis
             jsonObject = response.getJSONObject(0);
 
             JSONObject fields = jsonObject.getJSONObject("fields");
-
             String rfc = fields.optString("rfc_cliente");
             String nombre = fields.optString("nombre_mascota");
             String especie = fields.optString("especie_mascota");

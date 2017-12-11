@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/verde_azulado"
         android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="10dp">
         <!--Boton REGRESAR-->
         <LinearLayout
             android:layout_width="90dp"
@@ -22,8 +22,8 @@
             <ImageButton
                 android:id="@+id/activityDetalleMascotaBtnRegresar"
                 android:layout_marginLeft="15dp"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/regresar"/>
         </LinearLayout>
         <!--Boton REGRESAR-->
@@ -50,8 +50,8 @@
             <ImageButton
                 android:layout_marginRight="15dp"
                 android:id="@+id/activityDetalleMascotaBtnHome"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/home"/>
         </LinearLayout>
         <!--Boton HOME-->
@@ -67,7 +67,7 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:gravity="right">
                 <CheckBox
@@ -79,12 +79,12 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_margin="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Clave:"
                     android:gravity="bottom"/>
@@ -92,115 +92,115 @@
                     android:gravity="bottom"
                     android:id="@+id/detalle_mascota_txt_cve"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Rfc:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_rfc_cliente"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Nombre:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Especie:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_especie"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Raza:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_raza"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Color:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_color"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
@@ -208,56 +208,56 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Tamaño:"
                     android:textSize="30sp" />
 
                 <EditText
                     android:id="@+id/detalle_mascota_txt_tamanio"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Seña:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_senia"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:text="Fecha"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_fecha"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>

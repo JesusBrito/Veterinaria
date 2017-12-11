@@ -23,8 +23,8 @@
             <ImageButton
                 android:id="@+id/activityHistorialClienteBtnRegresar"
                 android:layout_marginLeft="15dp"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/regresar"/>
         </LinearLayout>
         <!--Boton REGRESAR-->
@@ -51,8 +51,8 @@
             <ImageButton
                 android:layout_marginRight="15dp"
                 android:id="@+id/activityHistorialClienteBtnHome"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/home"/>
         </LinearLayout>
         <!--Boton HOME-->
@@ -88,36 +88,37 @@
                 </LinearLayout>
                 <!--TEXTO-->
 
-
-                <!--Boton EDITAR-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="right"
-                    android:layout_marginRight="15dp">
-                    <Button
-                        android:id="@+id/activity_historial_cliente_btnEditar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Editar"
-                        android:textColor="@android:color/white"
-                        android:background="@color/verde_azulado"/>
-                </LinearLayout>
-                <!--Boton EDITAR-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp">
                 <TextView
                     android:layout_width="15dp"
                     android:layout_height="3dp" />
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:background="@mipmap/foto"/>
+                <!--Boton EDITAR-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        android:background="@mipmap/foto"/>
+                    <Button
+                        android:id="@+id/activity_historial_cliente_btnEditar"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:text="Editar"
+                        android:textColor="@android:color/white"
+                        android:background="@color/verde_azulado"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+                <!--Boton EDITAR-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,28 +129,32 @@
                         android:layout_height="wrap_content"
                         android:hint="rfc"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_cliente_lblCorreo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="correo"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_cliente_lblTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Telefono"
+                        android:hint="telefono"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_cliente_lblDireccion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="direccion"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -162,12 +167,12 @@
                     android:layout_height="match_parent"
                     android:text="Mascotas"
                     android:textColor="@color/verde_azulado"
-                    android:textSize="45dp"/>
+                    android:textSize="25dp"/>
                 <ImageButton
                     android:layout_marginLeft="60dp"
                     android:id="@+id/activity_historial_cliente_btnAddMascota"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
                     android:layout_gravity="right"
                     android:background="@mipmap/imgplus">
                 </ImageButton>
@@ -177,13 +182,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="________________"
-                    android:textColor="@color/azul"
-                    android:textSize="45dp" />
+                <View
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/azul"/>
             </LinearLayout>
             <ListView
                 android:id="@+id/listView"

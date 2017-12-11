@@ -23,8 +23,8 @@
             <ImageButton
                 android:id="@+id/activity_historial_mascota_btnRegresar"
                 android:layout_marginLeft="15dp"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/regresar"/>
         </LinearLayout>
         <!--Boton REGRESAR-->
@@ -51,8 +51,8 @@
             <ImageButton
                 android:layout_marginRight="15dp"
                 android:id="@+id/activity_historial_mascota_btnHome"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@mipmap/home"/>
         </LinearLayout>
         <!--Boton HOME-->
@@ -87,37 +87,35 @@
                         android:textSize="30dp"/>
                 </LinearLayout>
                 <!--TEXTO-->
-
-
-                <!--Boton EDITAR-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="right"
-                    android:layout_marginRight="15dp">
-                    <Button
-                        android:id="@+id/activity_historial_mascota_btnEditar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Editar"
-                        android:textColor="@android:color/white"
-                        android:background="@color/verde_azulado"/>
-                </LinearLayout>
-                <!--Boton EDITAR-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="3dp" />
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:background="@mipmap/dog"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        android:background="@mipmap/dog"/>
+
+                    <!--Boton EDITAR-->
+                    <Button
+                        android:id="@+id/activity_historial_mascota_btnEditar"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:background="@color/verde_azulado"
+                        android:text="Editar"
+                        android:textColor="@android:color/white"
+                        android:textSize="16dp"/>
+                    <!--Boton EDITAR-->
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,42 +126,48 @@
                         android:layout_height="wrap_content"
                         android:hint="Raza"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_mascota_lblEspecie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Especie"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_mascota_lblFecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Fecha"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_mascota_lblColor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Color"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_mascota_lblTamaño"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Tamaño-Seña"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                     <TextView
                         android:id="@+id/activity_historial_mascota_lblDueño"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Dueño"
                         android:textColor="@android:color/background_dark"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:layout_marginBottom="5dp"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -176,12 +180,12 @@
                     android:layout_height="match_parent"
                     android:text="Historial"
                     android:textColor="@color/verde_azulado"
-                    android:textSize="45dp"/>
+                    android:textSize="26dp"/>
                 <ImageButton
                     android:layout_marginLeft="60dp"
                     android:id="@+id/activity_historial_mascota_btnServicioAdd"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
                     android:layout_gravity="right"
                     android:background="@mipmap/imgplus">
                 </ImageButton>
@@ -191,13 +195,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="________________"
-                    android:textColor="@color/azul"
-                    android:textSize="45dp" />
+                <View
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/azul"/>
             </LinearLayout>
             <ListView
                 android:id="@+id/listView"

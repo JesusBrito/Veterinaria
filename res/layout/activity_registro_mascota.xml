@@ -28,8 +28,8 @@
                 <ImageButton
                     android:id="@+id/activityRegistroMascotasBtnRegresar"
                     android:layout_marginLeft="15dp"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:background="@mipmap/regresar"/>
             </LinearLayout>
             <!--Boton REGRESAR-->
@@ -56,8 +56,8 @@
                 <ImageButton
                     android:layout_marginRight="15dp"
                     android:id="@+id/activityRegistroMascotasBtnHome"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:background="@mipmap/home"/>
             </LinearLayout>
             <!--Boton HOME-->
@@ -140,7 +140,7 @@
                 android:ems="20"
                 android:hint="Raza"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                 android:ems="20"
                 android:hint="Rfc cliente"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -171,9 +171,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
-                android:hint="    Color"
+                android:hint="Color"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -190,9 +190,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
-                android:hint="    Tamaño"
+                android:hint="Tamaño"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,9 +207,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="20"
-                android:hint="    Seña Particular"
+                android:hint="Seña Particular"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -226,7 +226,7 @@
                 android:ems="20"
                 android:hint="Fecha de nacimiento"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -241,26 +241,26 @@
 
             <Button
                 android:id="@+id/activity_registro_mascota_btnCancelar"
-                android:layout_width="150dp"
-                android:layout_height="65dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
                 android:ems="20"
                 android:text="Cancelar"
                 android:textColor="@android:color/white"
                 android:onClick="btnCancel_click"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
             <TextView
                 android:layout_width="25dp"
                 android:layout_height="20dp" />
 
             <Button
                 android:id="@+id/activity_registro_mascota_btnGuardar"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
                 android:background="@color/verde_azulado"
                 android:ems="20"
                 android:onClick="btnGuardar_click"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:text="Guardar"
                 android:textColor="@android:color/white"
                 android:layout_weight="0.72" />
