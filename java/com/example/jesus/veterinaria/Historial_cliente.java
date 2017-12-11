@@ -114,7 +114,6 @@ public class Historial_cliente extends AppCompatActivity implements Response.Lis
         try {
             JSONObject jsonObject=null;
             jsonObject = response.getJSONObject(0);
-
             JSONObject fields = jsonObject.getJSONObject("fields");
             String name = fields.optString("nombre_cliente");
             String address = fields.optString("direccion_cliente");

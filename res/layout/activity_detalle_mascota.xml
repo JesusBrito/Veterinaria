@@ -20,7 +20,7 @@
             android:gravity="left"
             android:layout_marginRight="40dp">
             <ImageButton
-                android:id="@+id/activityDetalleClienteBtnRegresar"
+                android:id="@+id/activityDetalleMascotaBtnRegresar"
                 android:layout_marginLeft="15dp"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -49,7 +49,7 @@
             android:gravity="right">
             <ImageButton
                 android:layout_marginRight="15dp"
-                android:id="@+id/activityDetalleClienteBtnHome"
+                android:id="@+id/activityDetalleMascotaBtnHome"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:background="@mipmap/home"/>
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Modificar mascota"
-                    android:id="@+id/activityDetalleClienteChEditar"
+                    android:id="@+id/activityDetalleMascotaChEditar"
                     android:layout_marginRight="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -213,7 +213,7 @@
                     android:textSize="30sp" />
 
                 <EditText
-                    android:id="@+id/detalle_mascota_txt_tamaño"
+                    android:id="@+id/detalle_mascota_txt_tamanio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
@@ -267,7 +267,7 @@
                 android:orientation="horizontal"
                 android:gravity="center">
                 <Button
-                    android:id="@+id/activityDetalleClienteBtnEliminar"
+                    android:id="@+id/activity_detalle_mascotaBtnEliminar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/rojo"
@@ -277,7 +277,7 @@
                     android:text="Borrar"
                     android:enabled="true"/>
                 <Button
-                    android:id="@+id/activityDetalleClienteBtnGuardar"
+                    android:id="@+id/activity_detalle_mascotaBtnGuardar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/verde_azulado"

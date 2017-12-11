@@ -21,7 +21,7 @@
             android:gravity="left"
             android:layout_marginRight="40dp">
             <ImageButton
-                android:id="@+id/activityServiciosBtnRegresar"
+                android:id="@+id/activity_historial_mascota_btnRegresar"
                 android:layout_marginLeft="15dp"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -50,7 +50,7 @@
             android:gravity="right">
             <ImageButton
                 android:layout_marginRight="15dp"
-                android:id="@+id/activityServiciosBtnHome"
+                android:id="@+id/activity_historial_mascota_btnHome"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:background="@mipmap/home"/>
@@ -83,7 +83,7 @@
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre-Rfc"
+                        android:text="Nombre-Clave"
                         android:textSize="30dp"/>
                 </LinearLayout>
                 <!--TEXTO-->
@@ -130,7 +130,7 @@
                         android:textColor="@android:color/background_dark"
                         android:textSize="20dp" />
                     <TextView
-                        android:id="@+id/activity_historial_mascota_lblespecie"
+                        android:id="@+id/activity_historial_mascota_lblEspecie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Especie"
@@ -179,7 +179,7 @@
                     android:textSize="45dp"/>
                 <ImageButton
                     android:layout_marginLeft="60dp"
-                    android:id="@+id/principalServicioAdd"
+                    android:id="@+id/activity_historial_mascota_btnServicioAdd"
                     android:layout_height="50dp"
                     android:layout_width="50dp"
                     android:layout_gravity="right"

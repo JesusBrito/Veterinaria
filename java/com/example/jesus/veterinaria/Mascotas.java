@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -94,7 +95,6 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
         String url = "https://veterinary-clinic-ws.herokuapp.com/mascotas/";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,this,this);
         request.add(jsonArrayRequest);
-//        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
     @Override
@@ -125,6 +125,17 @@ public class Mascotas extends AppCompatActivity implements Response.Listener<JSO
             MascotaAdapter adapter=new MascotaAdapter(this, lista);
             listView.setAdapter(adapter);
 
+            listView.setOnItemClickListener(
+                    new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i = new Intent(getApplicationContext(), Historial_mascota.class);
+                            i.putExtra("id", lista.get(position).getRfc());
+                            startActivity(i);
+                            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                        }
+                    }
+            );
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, "No se ha podido establecer conexión con el servidor" +

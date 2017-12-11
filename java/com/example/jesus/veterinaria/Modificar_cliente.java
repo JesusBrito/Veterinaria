@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 public class Modificar_cliente extends AppCompatActivity {
     EditText txt_rfc, txt_nombre, txt_direccion, txt_telefono, txt_email;
-
     RequestQueue request;
     JsonArrayRequest jsonClienteArrayRequest,jsonArrayGuardarRequest;
     JsonObjectRequest jsonEliminarObjectRequest;
