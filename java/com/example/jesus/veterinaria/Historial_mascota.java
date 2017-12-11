@@ -55,7 +55,7 @@ public class Historial_mascota extends AppCompatActivity implements Response.Lis
                     public void onClick(View view) {
                         Intent home = new Intent(getApplicationContext(), Principal.class);
                         startActivity(home);
-                        overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                        overridePendingTransition(R.anim.up_in, R.anim.up_out);
                     }
                 }
         );

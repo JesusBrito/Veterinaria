@@ -98,6 +98,7 @@ public class registro_servicio extends AppCompatActivity implements Response.Lis
     private void cargaHome() {
         cargar = new Intent(this, Principal.class);
         this.startActivity(cargar);
+        overridePendingTransition(R.anim.up_in, R.anim.up_out);
     }
 
     private void cargaMascotas() {

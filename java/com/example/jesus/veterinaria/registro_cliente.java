@@ -47,6 +47,7 @@ public class registro_cliente extends AppCompatActivity implements Response.List
                     @Override
                     public void onClick(View view) {
                         cargaHome();
+                        overridePendingTransition(R.anim.up_in, R.anim.up_out);
                     }
                 }
         );
@@ -56,6 +57,7 @@ public class registro_cliente extends AppCompatActivity implements Response.List
                     @Override
                     public void onClick(View view) {
                         cargaHome();
+                        overridePendingTransition(R.anim.up_in, R.anim.up_out);
                     }
                 }
         );

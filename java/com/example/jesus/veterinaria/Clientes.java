@@ -77,10 +77,10 @@ public class Clientes extends AppCompatActivity {
                 }
         );
     }
-
     private void cargaHome() {
         cargar = new Intent(this, Principal.class);
         this.startActivity(cargar);
+        overridePendingTransition(R.anim.up_in, R.anim.up_out);
     }
 
     private void inicializaComponentes(){

@@ -60,6 +60,7 @@ public class Medicos extends AppCompatActivity{
                     @Override
                     public void onClick(View view) {
                         cargaHome();
+                        overridePendingTransition(R.anim.up_in, R.anim.up_out);
                     }
                 }
         );
@@ -68,6 +69,7 @@ public class Medicos extends AppCompatActivity{
                     @Override
                     public void onClick(View view) {
                         cargaHome();
+                        overridePendingTransition(R.anim.up_in, R.anim.up_out);
                     }
                 }
         );

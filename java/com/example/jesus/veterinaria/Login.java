@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
     private void cargaInicio() {
         cargar = new Intent(this, Principal.class);
         this.startActivity(cargar);
+        overridePendingTransition(R.anim.up_in, R.anim.up_out);
     }
 
     private void inicializaComponentes() {
