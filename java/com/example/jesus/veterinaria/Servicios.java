@@ -14,11 +14,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -26,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Servicios extends AppCompatActivity{
 
@@ -77,7 +81,11 @@ public class Servicios extends AppCompatActivity{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (txtCve.getText().toString().equals("")){
+                            cargarWebService();
+                        }else{
                         cargarWebServiceCve();
+                        }
                     }
                 }
         );
@@ -99,7 +107,6 @@ public class Servicios extends AppCompatActivity{
     }
 
     private void agregarMascota() {
-
         cargar = new Intent(this, registro_servicio.class);
         this.startActivity(cargar);
     }
@@ -112,21 +119,27 @@ public class Servicios extends AppCompatActivity{
         String url = "https://veterinary-clinic-ws.herokuapp.com/servicios/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         ServicioModelo servicio = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i = 0; i < results.length(); i++) {
                                 JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
+                                jsonObject = results.getJSONObject(i);
                                 //TODO
-                                String id = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("descripcion_servicio");
-                                String precio = fields.optString("precio_servicio");
+                                String id = jsonObject.optString("cve_servicio");
+                                String name = jsonObject.optString("descripcion_servicio");
+                                String precio = jsonObject.optString("precio_servicio");
                                 servicio = new ServicioModelo(id, name, precio);
                                 lista.add(servicio);
                             }
@@ -165,7 +178,6 @@ public class Servicios extends AppCompatActivity{
                 }
         );
         request.add(jsonArrayRequest);
-//        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
     private void cargarWebServiceCve() {
@@ -173,24 +185,32 @@ public class Servicios extends AppCompatActivity{
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
         Cve=txtCve.getText().toString();
-        String url = "https://veterinary-clinic-ws.herokuapp.com/servicios/"+Cve;
+        String url = "https://veterinary-clinic-ws.herokuapp.com/servicios/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         ServicioModelo servicio = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
-                                //TODO
-                                String id = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("descripcion_servicio");
-                                String precio = fields.optString("precio_servicio");
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        lista.clear();
+                        try {
+                            assert responseJSON != null;
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
+
+                                String id = jsonObject.optString("cve_servicio");
+                                String name = jsonObject.optString("descripcion_servicio");
+                                String precio = jsonObject.optString("precio_servicio");
                                 servicio = new ServicioModelo(id, name, precio);
                                 lista.add(servicio);
                             }
@@ -227,9 +247,20 @@ public class Servicios extends AppCompatActivity{
                         dialog.hide();
                     }
                 }
-        );
+        ){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("cve", Cve);
+                return postParam;
+            }
+        };
         request.add(jsonArrayRequest);
-//        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
 }

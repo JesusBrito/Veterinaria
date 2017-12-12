@@ -95,9 +95,7 @@ public class registro_medico extends AppCompatActivity {
             progreso= new ProgressDialog(this);
             progreso.setMessage("Cargando...");
             progreso.show();
-
             String url ="https://veterinary-clinic-ws.herokuapp.com/medicos/create/";
-
             url= url.replace(" ", "%20");
             StringRequest JsonArrayRequest= new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -135,7 +133,7 @@ public class registro_medico extends AppCompatActivity {
                     postParam.put("imagen","");
                     return postParam;
                 }
-            };;
+            };
             request.add(JsonArrayRequest);
         }
     }

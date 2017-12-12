@@ -132,6 +132,7 @@ public class Clientes extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         try {
+                            assert responseJSON != null;
                             JSONArray results = responseJSON.optJSONArray("objects");
                             for (int i=0;i<results.length();i++){
                                 JSONObject jsonObject=null;
@@ -194,7 +195,6 @@ public class Clientes extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
-        Rfc=txtRfc.getText().toString();
         String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/";
         Activity activity = this;
         final Activity finalActivity = activity;
@@ -245,14 +245,14 @@ public class Clientes extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "No se puede conectar "+error.toString(), Toast.LENGTH_LONG).show();
-                System.out.println();
-                Log.e("ERROR: ", error.toString());
-                dialog.hide();
-            }
-        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "No se puede conectar "+error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.e("ERROR: ", error.toString());
+                        dialog.hide();
+                    }
+                });
         request.add(jsonObjRequest);
     }
 }
