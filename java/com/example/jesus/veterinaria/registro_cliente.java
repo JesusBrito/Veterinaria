@@ -10,16 +10,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 
-public class registro_cliente extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
+import java.util.HashMap;
+import java.util.Map;
+
+public class registro_cliente extends AppCompatActivity {
     Button btnGuardar, btnCancelar;
     ImageButton btnRegresar, btnHome, btnImagen;
     EditText txtNom, txtApe, txtTel, txtDirec, txtEmail, txtRFC;
@@ -90,12 +95,46 @@ public class registro_cliente extends AppCompatActivity implements Response.List
             progreso= new ProgressDialog(this);
             progreso.setMessage("Cargando...");
             progreso.show();
-            String url ="https://veterinary-clinic-ws.herokuapp.com/clientes/create/"+txtRFC.getText().toString()+
-                    "/"+txtNom.getText().toString()+" "+txtApe.getText().toString()+"/"+txtDirec.getText().toString()+
-                    "/"+txtTel.getText().toString()+"/"+txtEmail.getText().toString()+"/";
+            String url ="https://veterinary-clinic-ws.herokuapp.com/clientes/create/";
 
             url= url.replace(" ", "%20");
-            JsonArrayRequest= new JsonArrayRequest(Request.Method.GET,url,null,this,this);
+            StringRequest JsonArrayRequest= new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progreso.hide();
+                            Toast.makeText(getApplicationContext(), "Registro agregado exitosamente", Toast.LENGTH_SHORT).show();
+                            txtNom.setText("");
+                            txtApe.setText("");
+                            txtRFC.setText("");
+                            txtDirec.setText("");
+                            txtTel.setText("");
+                            txtEmail.setText("");
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progreso.hide();
+                            Toast.makeText(getApplicationContext(),"No se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> postParam = new HashMap<String, String>();
+                    postParam.put("rfc", txtRFC.getText().toString());
+                    postParam.put("nombre", txtNom.getText().toString());
+                    postParam.put("direccion", txtDirec.getText().toString());
+                    postParam.put("telefono", txtTel.getText().toString());
+                    postParam.put("email", txtEmail.getText().toString());
+                    postParam.put("imagen","");
+                    return postParam;
+                }
+            };
             request.add(JsonArrayRequest);
         }
     }
@@ -121,24 +160,5 @@ public class registro_cliente extends AppCompatActivity implements Response.List
     private void cargaClientes() {
         cargar = new Intent(this, Clientes.class);
         this.startActivity(cargar);
-    }
-
-    //======Métodos de Volley
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        progreso.hide();
-        Toast.makeText(this,"No se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onResponse(JSONArray response) {
-        progreso.hide();
-        Toast.makeText(this,"Registro agregado exitosamente",Toast.LENGTH_SHORT).show();
-        txtNom.setText("");
-        txtRFC.setText("");
-        txtDirec.setText("");
-        txtTel.setText("");
-        txtEmail.setText("");
     }
 }

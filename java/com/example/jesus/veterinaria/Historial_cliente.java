@@ -14,11 +14,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -26,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Historial_cliente extends AppCompatActivity{
     TextView txt_rfc, txt_nombre, txt_direccion, txt_telefono, txt_email;
@@ -91,7 +95,6 @@ public class Historial_cliente extends AppCompatActivity{
                 }
         );
         request = Volley.newRequestQueue(this);
-
         cargarWebService();
         cargarWebServiceMascotas();
     }
@@ -109,21 +112,22 @@ public class Historial_cliente extends AppCompatActivity{
         listView = (ListView) findViewById(R.id.listView);
     }
     private void cargarWebService() {
-        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/" + rfc;
+        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/";
         final Activity activity =this;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         try {
-                            JSONObject jsonObject=null;
-                            jsonObject = response.getJSONObject(0);
-                            JSONObject fields = jsonObject.getJSONObject("fields");
-                            String name = fields.optString("nombre_cliente");
-                            String address = fields.optString("direccion_cliente");
-                            String phone = fields.optString("telefono_cliente");
-                            String email = fields.optString("email_cliente");
+                            JSONObject responseJSON = null;
+                            responseJSON = new JSONObject(response);
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            JSONObject jsonObject = results.optJSONObject(0);
 
+                            String name = jsonObject.optString("nombre_cliente");
+                            String address = jsonObject.optString("direccion_cliente");
+                            String phone = jsonObject.optString("telefono_cliente");
+                            String email = jsonObject.optString("email_cliente");
                             txt_rfc.setText(rfc);
                             txt_nombre.setText(name);
                             txt_direccion.setText(address);
@@ -145,34 +149,51 @@ public class Historial_cliente extends AppCompatActivity{
                         Log.e("ERROR: ", error.toString());
                     }
                 }
-        );
-        request.add(jsonArrayRequest);
-    }
+        ){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
 
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("rfc", rfc);
+                return postParam;
+            }
+        };
+        request.add(jsonObjRequest);
+    }
     private void cargarWebServiceMascotas() {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Consultando Mascotas");
         dialog.show();
-        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/"+rfc+"/mascotas/";
+        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/mascotas/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         ListaMascotasModelo mascota = null;
                         lista.clear();
+                        JSONObject responseJSON = null;
+                        lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
-
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
                                 String id = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("nombre_mascota");
-                                String raza = fields.optString("raza_mascota");
-                                String color = fields.optString("color_mascota");
-                                String fecha = fields.optString("fechanac_mascota");
+                                String name = jsonObject.optString("nombre_mascota");
+                                String raza = jsonObject.optString("raza_mascota");
+                                String color = jsonObject.optString("color_mascota");
+                                String fecha = jsonObject.optString("fechanac_mascota");
                                 mascota = new ListaMascotasModelo(name, raza,color,fecha,id);
                                 lista.add(mascota);
                             }
@@ -207,8 +228,19 @@ public class Historial_cliente extends AppCompatActivity{
                 Log.e("ERROR: ", error.toString());
                 dialog.hide();
             }
-        }
-        );
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("rfc", rfc);
+                return postParam;
+            }
+        };
         request.add(jsonArrayRequest);
     }
 }

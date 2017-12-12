@@ -12,23 +12,29 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Clientes extends AppCompatActivity {
     ListView listView;
     ProgressDialog dialog;
     RequestQueue request;
-    JsonArrayRequest jsonArrayRequest;
     ArrayList<PersonaModelo> lista;
     ImageButton btnMas, btnHome, btnRegresar ;
     Button btnBuscar;
@@ -72,7 +78,15 @@ public class Clientes extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        cargarWebServiceRfc();
+                        try {
+                            if (txtRfc.getText().toString().equals("")){
+                                cargarWebService();
+                            }else{
+                                cargarWebServiceRfc();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
         );
@@ -97,29 +111,36 @@ public class Clientes extends AppCompatActivity {
         this.startActivity(cargar);
     }
 
-    private void cargarWebServiceRfc() {
+    private void cargarWebServiceRfc() throws JSONException {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
         Rfc=txtRfc.getText().toString();
-        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/"+Rfc;
+        String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.POST,url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         PersonaModelo cliente = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
 
-                                String rfc = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("nombre_cliente");
-                                cliente = new PersonaModelo(rfc, name);
+                                String rfc = jsonObject.optString("rfc_cliente");
+                                String name = jsonObject.optString("nombre_cliente");
+                                cliente=new PersonaModelo(rfc, name);
 
                                 lista.add(cliente);
                             }
@@ -145,17 +166,30 @@ public class Clientes extends AppCompatActivity {
                             Log.d("ERROR: ", e.toString());
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "El rfc no se encuentra registrado "+error.toString(), Toast.LENGTH_LONG).show();
-                System.out.println();
-                Log.e("ERROR: ", error.toString());
-                dialog.hide();
-            }
-        }
-        );
-        request.add(jsonArrayRequest);
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "El rfc no se encuentra registrado "+error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println();
+                        Log.e("ERROR: ", error.toString());
+                        dialog.hide();
+                    }
+                }
+                ){
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/x-www-form-urlencoded; charset=UTF-8";
+                    }
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> postParam = new HashMap<String, String>();
+                        postParam.put("rfc", Rfc);
+                        return postParam;
+                    }
+                };
+        request.add(jsonObjRequest);
     }
     private void cargarWebService() {
         dialog = new ProgressDialog(this);
@@ -165,21 +199,28 @@ public class Clientes extends AppCompatActivity {
         String url = "https://veterinary-clinic-ws.herokuapp.com/clientes/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonObjRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         PersonaModelo cliente = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            //JSONArray results = responseJSON.optJSONArray("results");
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
 
-                                String rfc = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("nombre_cliente");
-                                cliente = new PersonaModelo(rfc, name);
+                                String rfc = jsonObject.optString("rfc_cliente");
+                                String name = jsonObject.optString("nombre_cliente");
+                                cliente=new PersonaModelo(rfc, name);
 
                                 lista.add(cliente);
                             }
@@ -197,7 +238,7 @@ public class Clientes extends AppCompatActivity {
                                         }
                                     }
                             );
-                        } catch (JSONException e) {
+                        }catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "No se ha podido establecer conexión con el servidor" +
                                     " " + response, Toast.LENGTH_LONG).show();
@@ -213,9 +254,8 @@ public class Clientes extends AppCompatActivity {
                 Log.e("ERROR: ", error.toString());
                 dialog.hide();
             }
-        }
-        );
-        request.add(jsonArrayRequest);
+        });
+        request.add(jsonObjRequest);
     }
 }
 

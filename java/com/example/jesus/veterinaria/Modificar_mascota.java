@@ -163,7 +163,6 @@ public class Modificar_mascota extends AppCompatActivity {
         txt_especie = (EditText) findViewById(R.id.detalle_mascota_txt_especie);
         txt_raza = (EditText) findViewById(R.id.detalle_mascota_txt_raza);
         txt_color = (EditText) findViewById(R.id.detalle_mascota_txt_color);
-        txt_tamaño = (EditText) findViewById(R.id.detalle_mascota_txt_tamanio);
         txt_senia = (EditText) findViewById(R.id.detalle_mascota_txt_senia);
         txt_fecha = (EditText) findViewById(R.id.detalle_mascota_txt_fecha);
         btn_regresar = (ImageButton) findViewById(R.id.activityDetalleMascotaBtnRegresar);
