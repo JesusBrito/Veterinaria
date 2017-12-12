@@ -21,7 +21,7 @@ import org.json.JSONArray;
 
 public class registro_medico extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener{
     Button btnGuardar, btnCancelar;
-    ImageButton btnRegresar, btnHome;
+    ImageButton btnRegresar, btnHome,btnImagen;
     EditText txtNombre, txtApellidos, txtRfcMedico, txtDireccion, txtTelefono, txtEmail;
     Intent cargar;
     ProgressDialog progreso;
@@ -69,6 +69,14 @@ public class registro_medico extends AppCompatActivity implements Response.Liste
                     }
                 }
         );
+        btnImagen.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }
+        );
     }
     private void cargarWebService() {
         if(txtRfcMedico.getText().toString().equals("")||
@@ -104,6 +112,7 @@ public class registro_medico extends AppCompatActivity implements Response.Liste
         txtTelefono=(EditText) findViewById(R.id.activity_registro_medico_txtTel);
         txtEmail=(EditText) findViewById(R.id.activity_registro_medico_txtEmail);
         txtNombre=(EditText) findViewById(R.id.activity_registro_medico_txtNom);
+        btnImagen=(ImageButton) findViewById(R.id.activity_medicos_btn_img_cargar);
     }
 
     //======Métodos de Volley

@@ -21,7 +21,7 @@ import org.json.JSONArray;
 
 public class registro_cliente extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
     Button btnGuardar, btnCancelar;
-    ImageButton btnRegresar, btnHome;
+    ImageButton btnRegresar, btnHome, btnImagen;
     EditText txtNom, txtApe, txtTel, txtDirec, txtEmail, txtRFC;
     Intent cargar;
     ProgressDialog progreso;
@@ -70,6 +70,14 @@ public class registro_cliente extends AppCompatActivity implements Response.List
                     }
                 }
         );
+        btnImagen.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }
+        );
     }
 
     private void cargarWebService() {
@@ -103,6 +111,7 @@ public class registro_cliente extends AppCompatActivity implements Response.List
         txtDirec=(EditText) findViewById(R.id.activity_registro_cliente_txtDirec);
         txtEmail=(EditText) findViewById(R.id.activity_registro_cliente_txtEmail);
         txtRFC=(EditText) findViewById(R.id.activity_registro_cliente_txtRFC);
+        btnImagen=(ImageButton) findViewById(R.id.activity_cliente_btn_img_cargar);
     }
     private void cargaHome() {
         cargar = new Intent(this, Principal.class);

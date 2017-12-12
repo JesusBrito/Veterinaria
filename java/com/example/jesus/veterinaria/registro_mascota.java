@@ -28,7 +28,7 @@ import java.util.List;
 
 public class registro_mascota extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
     Button btnGuardar, btnCancelar;
-    ImageButton btnRegresar, btnHome;
+    ImageButton btnRegresar, btnHome,btnImagen;
     EditText txtNombre, txtEspecie, txtRaza, txtRfcCliente, txtColor, txtSenia, txtNacimiento;
     Spinner spTamaño;
     String Tamaño;
@@ -102,6 +102,14 @@ public class registro_mascota extends AppCompatActivity implements Response.List
                     }
                 }
         );
+        btnImagen.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }
+        );
     }
     //Apaptador
     public void llenarSpinner(List<String> items, Spinner spinner){
@@ -158,6 +166,7 @@ public class registro_mascota extends AppCompatActivity implements Response.List
         spTamaño=(Spinner) findViewById(R.id.activity_registro_mascota_spTamanio);
         txtSenia=(EditText) findViewById(R.id.activity_registro_mascota_txtsena);
         txtNacimiento=(EditText) findViewById(R.id.activity_registro_mascota_txtNacimiento);
+        btnImagen=(ImageButton) findViewById(R.id.activity_mascota_btn_img_cargar);
     }
     private void cargaHome() {
         cargar = new Intent(this, Principal.class);
