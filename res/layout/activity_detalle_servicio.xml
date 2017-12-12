@@ -86,16 +86,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Clave:"
                     android:gravity="bottom"/>
                 <EditText
                     android:gravity="bottom"
                     android:id="@+id/detalle_servicio_txt_cve"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
+                    android:enabled="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,14 +108,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Nombre:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_servicio_txt_nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
 
@@ -131,13 +131,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Precio:"
-                    android:textSize="30sp" />
+                    android:textSize="20sp"
+                    android:gravity="bottom"/>
 
                 <EditText
                     android:id="@+id/detalle_servicio_txt_precio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
 

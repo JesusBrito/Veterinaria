@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Modificar_mascota extends AppCompatActivity {
     EditText txtCve, txt_rfc_cliente, txt_nombre, txt_especie, txt_raza, txt_color, txt_tamaño, txt_senia, txt_fecha;
     RequestQueue request;
@@ -36,7 +42,8 @@ public class Modificar_mascota extends AppCompatActivity {
     ImageButton btn_regresar, btn_home;
     CheckBox chEditar;
     ProgressDialog dialog;
-
+    Spinner spTamaño;
+    String Tamaño , tamañoSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,25 @@ public class Modificar_mascota extends AppCompatActivity {
         Intent i = getIntent();
         idMascota = i.getStringExtra("id");
         inicializaComponentes();
+        List<String> tamaños=new ArrayList<>();
+
+        tamaños.add("Pequeño");
+        tamaños.add("Mediano");
+        tamaños.add("Grande");
+        llenarSpinner(tamaños,spTamaño);
+
+        spTamaño.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tV= (TextView) view;
+                tamañoSpinner=tV.getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         btn_regresar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -76,19 +102,20 @@ public class Modificar_mascota extends AppCompatActivity {
                             txt_especie.setEnabled(true);
                             txt_raza.setEnabled(true);
                             txt_color.setEnabled(true);
-                            txt_tamaño.setEnabled(true);
                             txt_senia.setEnabled(true);
                             txt_fecha.setEnabled(true);
                             btnGuardar.setEnabled(true);
+                            spTamaño.setEnabled(true);
+                            Tamaño=txt_tamaño.getText().toString();
                         }else{
                             txt_nombre.setEnabled(false);
                             txt_especie.setEnabled(false);
                             txt_raza.setEnabled(false);
                             txt_color.setEnabled(false);
-                            txt_tamaño.setEnabled(false);
                             txt_senia.setEnabled(false);
                             txt_fecha.setEnabled(false);
                             btnGuardar.setEnabled(false);
+                            spTamaño.setEnabled(false);
                         }
                     }
                 }
@@ -129,6 +156,7 @@ public class Modificar_mascota extends AppCompatActivity {
         chEditar = (CheckBox) findViewById(R.id.activityDetalleMascotaChEditar);
         btnGuardar = (Button) findViewById(R.id.activity_detalle_mascotaBtnGuardar);
         btnEliminar = (Button) findViewById(R.id.activity_detalle_mascotaBtnEliminar);
+        spTamaño=(Spinner) findViewById(R.id.activity_registro_mascota_spTamanio);
 
     }
     private void cargarWebServiceGuardar() {
@@ -255,4 +283,9 @@ public class Modificar_mascota extends AppCompatActivity {
         request.add(jsonEliminarObjectRequest);
     }
 
+    //Apaptador
+    public void llenarSpinner(List<String> items, Spinner spinner){
+        ArrayAdapter<String> adp= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
+        spinner.setAdapter(adp);
+    }
 }

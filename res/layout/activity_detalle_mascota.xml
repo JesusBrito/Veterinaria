@@ -85,14 +85,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Clave:"
                     android:gravity="bottom"/>
                 <EditText
                     android:gravity="bottom"
                     android:id="@+id/detalle_mascota_txt_cve"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="42dp"
                     android:textSize="30sp"
                     android:enabled="false"/>
             </LinearLayout>
@@ -107,14 +107,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Rfc:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_rfc_cliente"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
@@ -127,14 +127,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Nombre:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
@@ -147,14 +147,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Especie:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_especie"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
@@ -167,14 +167,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Raza:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_raza"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
@@ -187,14 +187,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Color:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_color"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
 
@@ -209,17 +209,40 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Tamaño:"
-                    android:textSize="30sp" />
+                    android:text="Tamaño seleccionado:"
+                    android:textSize="20sp"
+                    android:gravity="bottom"/>
 
                 <EditText
                     android:id="@+id/detalle_mascota_txt_tamanio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="11dp"
+                android:layout_marginBottom="5dp"
 
+                android:layout_marginRight="9dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Tamaño"
+                    android:textSize="20dp"
+                    android:gravity="bottom" />
+
+                <Spinner
+                    android:id="@+id/activity_detalle_mascota_spTamanio"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:enabled="false">
+                </Spinner>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -230,14 +253,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Seña:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_senia"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
 
@@ -251,14 +274,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Fecha"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_mascota_txt_fecha"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout

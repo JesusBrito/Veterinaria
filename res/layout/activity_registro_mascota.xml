@@ -179,20 +179,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="11dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:layout_width="8dp"
-                android:layout_height="20dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Tamaño"
+                android:textSize="20dp"/>
 
-            <EditText
-                android:id="@+id/activity_registro_mascota_txtTamanio"
+            <Spinner
+                android:id="@+id/activity_registro_mascota_spTamanio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="20"
-                android:hint="Tamaño"
-                android:textColor="@android:color/background_dark"
-                android:textSize="20dp" />
+                android:layout_height="30dp">
+            </Spinner>
+
         </LinearLayout>
 
         <LinearLayout
@@ -234,14 +237,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:layout_marginTop="10dp">
             <TextView
                 android:layout_width="10dp"
                 android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/activity_registro_mascota_btnCancelar"
-                android:layout_width="140dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/darker_gray"
                 android:ems="20"
@@ -255,7 +259,7 @@
 
             <Button
                 android:id="@+id/activity_registro_mascota_btnGuardar"
-                android:layout_width="140dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/verde_azulado"
                 android:ems="20"

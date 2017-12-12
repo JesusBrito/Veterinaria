@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -19,10 +23,15 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class registro_mascota extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
     Button btnGuardar, btnCancelar;
     ImageButton btnRegresar, btnHome;
-    EditText txtNombre, txtEspecie, txtRaza, txtRfcCliente, txtColor, txtTamaño, txtSenia, txtNacimiento;
+    EditText txtNombre, txtEspecie, txtRaza, txtRfcCliente, txtColor, txtSenia, txtNacimiento;
+    Spinner spTamaño;
+    String Tamaño;
     String cveMascota="";
     Intent cargar;
     String rfc;
@@ -38,7 +47,12 @@ public class registro_mascota extends AppCompatActivity implements Response.List
         setContentView(R.layout.activity_registro_mascota);
         request= Volley.newRequestQueue(this);
         inicializaComponentes();
+        List<String> tamaños=new ArrayList<>();
 
+        tamaños.add("Pequeño");
+        tamaños.add("Mediano");
+        tamaños.add("Grande");
+        llenarSpinner(tamaños,spTamaño);
         txtRfcCliente.setText(rfc);
 
         btnRegresar.setOnClickListener(
@@ -59,6 +73,18 @@ public class registro_mascota extends AppCompatActivity implements Response.List
                 }
         );
 
+        spTamaño.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView tV= (TextView) view;
+                Tamaño=tV.getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         btnCancelar.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -77,6 +103,11 @@ public class registro_mascota extends AppCompatActivity implements Response.List
                 }
         );
     }
+    //Apaptador
+    public void llenarSpinner(List<String> items, Spinner spinner){
+        ArrayAdapter<String> adp= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
+        spinner.setAdapter(adp);
+    }
 
     private void cargarWebService() {
         if(txtEspecie.getText().toString().equals("")||
@@ -84,7 +115,6 @@ public class registro_mascota extends AppCompatActivity implements Response.List
                 txtRaza.getText().toString().equals("")||
                 txtRfcCliente.getText().toString().equals("")||
                 txtColor.getText().toString().equals("")||
-                txtTamaño.getText().toString().equals("")||
                 txtSenia.getText().toString().equals("")||
                 txtNacimiento.getText().toString().equals("")){
                 Toast.makeText(this,"Todos los campos deben de estan correctamente llenados",Toast.LENGTH_SHORT);
@@ -106,9 +136,8 @@ public class registro_mascota extends AppCompatActivity implements Response.List
 
             String url ="https://veterinary-clinic-ws.herokuapp.com/mascotas/create/"+cveMascota+"/"+rfcCliente+
                     "/"+nombreMascota+"/"+txtEspecie.getText().toString()+"/"+txtRaza.getText().toString()+
-                    "/"+txtColor.getText().toString()+"/"+txtTamaño.getText().toString()+"/"+txtSenia.getText().toString()+
+                    "/"+txtColor.getText().toString()+"/"+Tamaño+"/"+txtSenia.getText().toString()+
                     "/"+txtNacimiento.getText().toString()+"";
-
             url= url.replace(" ", "%20");
             JsonArrayRequest= new JsonArrayRequest(Request.Method.GET,url,null,this,this);
             request.add(JsonArrayRequest);
@@ -126,7 +155,7 @@ public class registro_mascota extends AppCompatActivity implements Response.List
         txtEspecie=(EditText) findViewById(R.id.activity_registro_mascota_txtespecie);
         txtRaza=(EditText) findViewById(R.id.activity_registro_mascota_txtraza);
         txtRfcCliente=(EditText) findViewById(R.id.activity_registro_mascota_txtRfcCliente);
-        txtTamaño=(EditText) findViewById(R.id.activity_registro_mascota_txtTamanio);
+        spTamaño=(Spinner) findViewById(R.id.activity_registro_mascota_spTamanio);
         txtSenia=(EditText) findViewById(R.id.activity_registro_mascota_txtsena);
         txtNacimiento=(EditText) findViewById(R.id.activity_registro_mascota_txtNacimiento);
     }
@@ -159,7 +188,6 @@ public class registro_mascota extends AppCompatActivity implements Response.List
         txtSenia.setText("");
         txtRaza.setText("");
         txtEspecie.setText("");
-        txtTamaño.setText("");
         txtRfcCliente.setText("");
     }
 }

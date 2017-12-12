@@ -86,14 +86,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30dp"
-                    android:text="Rfc:"/>
+                    android:textSize="20dp"
+                    android:text="Rfc:"
+                    android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_cliente_txt_rfc"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30dp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20dp"
+                    android:enabled="false"
+                    android:gravity="bottom"/>
             </LinearLayout>
 
             <LinearLayout
@@ -106,17 +108,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Nombre:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_cliente_txt_nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
+                    android:enabled="false"
+                    android:gravity="bottom"/>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -129,14 +131,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Direccion:"
-                    android:textSize="30dp" />
+                    android:textSize="20dp"
+                    android:gravity="bottom"/>
 
                 <EditText
                     android:id="@+id/detalle_cliente_txt_direccion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
+                    android:enabled="false"
+                    android:gravity="bottom"/>
             </LinearLayout>
 
             <LinearLayout
@@ -149,15 +153,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30dp"
+                    android:textSize="20dp"
                     android:text="Telefono:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_cliente_txt_telefono"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="30dp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20dp"
+                    android:enabled="false"
+                    android:gravity="bottom"/>
             </LinearLayout>
 
             <LinearLayout
@@ -170,15 +175,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:text="Email:"
                     android:gravity="bottom"/>
                 <EditText
                     android:id="@+id/detalle_cliente_txt_email"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="30sp"
-                    android:enabled="false"/>
+                    android:layout_height="42dp"
+                    android:textSize="20sp"
+                    android:enabled="false"
+                    android:gravity="bottom"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
