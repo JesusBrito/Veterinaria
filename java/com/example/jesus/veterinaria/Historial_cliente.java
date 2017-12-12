@@ -189,7 +189,7 @@ public class Historial_cliente extends AppCompatActivity{
                             for (int i=0;i<results.length();i++){
                                 JSONObject jsonObject=null;
                                 jsonObject = results.getJSONObject(i);
-                                String id = jsonObject.optString("pk");
+                                String id = jsonObject.optString("id_mascota");
                                 String name = jsonObject.optString("nombre_mascota");
                                 String raza = jsonObject.optString("raza_mascota");
                                 String color = jsonObject.optString("color_mascota");

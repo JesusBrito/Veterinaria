@@ -10,16 +10,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 
-public class registro_medico extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener{
+import java.util.HashMap;
+import java.util.Map;
+
+public class registro_medico extends AppCompatActivity {
     Button btnGuardar, btnCancelar;
     ImageButton btnRegresar, btnHome,btnImagen;
     EditText txtNombre, txtApellidos, txtRfcMedico, txtDireccion, txtTelefono, txtEmail;
@@ -91,12 +96,46 @@ public class registro_medico extends AppCompatActivity implements Response.Liste
             progreso.setMessage("Cargando...");
             progreso.show();
 
-            String url ="https://veterinary-clinic-ws.herokuapp.com/medicos/create/"+txtRfcMedico.getText().toString()+
-                    "/"+txtNombre.getText().toString()+" "+txtApellidos.getText().toString()+"/"+
-                    txtDireccion.getText().toString()+"/"+txtTelefono.getText().toString()+"/"+txtEmail.getText().toString()+"/";
+            String url ="https://veterinary-clinic-ws.herokuapp.com/medicos/create/";
 
             url= url.replace(" ", "%20");
-            JsonArrayRequest= new JsonArrayRequest(Request.Method.GET,url,null,this,this);
+            StringRequest JsonArrayRequest= new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progreso.hide();
+                            Toast.makeText(getApplicationContext(),"Registro agregado exitosamente",Toast.LENGTH_SHORT).show();
+                            txtNombre.setText("");
+                            txtEmail.setText("");
+                            txtTelefono.setText("");
+                            txtApellidos.setText("");
+                            txtDireccion.setText("");
+                            txtRfcMedico.setText("");
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progreso.hide();
+                            Toast.makeText(getApplicationContext(),"No se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
+                        }
+            }){
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> postParam = new HashMap<String, String>();
+                    postParam.put("rfc", txtRfcMedico.getText().toString());
+                    postParam.put("nombre", txtNombre.getText().toString());
+                    postParam.put("direccion", txtDireccion.getText().toString());
+                    postParam.put("telefono", txtTelefono.getText().toString());
+                    postParam.put("email", txtEmail.getText().toString());
+                    postParam.put("imagen","");
+                    return postParam;
+                }
+            };;
             request.add(JsonArrayRequest);
         }
     }
@@ -113,26 +152,6 @@ public class registro_medico extends AppCompatActivity implements Response.Liste
         txtEmail=(EditText) findViewById(R.id.activity_registro_medico_txtEmail);
         txtNombre=(EditText) findViewById(R.id.activity_registro_medico_txtNom);
         btnImagen=(ImageButton) findViewById(R.id.activity_medicos_btn_img_cargar);
-    }
-
-    //======Métodos de Volley
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        progreso.hide();
-        Toast.makeText(this,"No se pudo registrar"+error.toString(),Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onResponse(JSONArray response) {
-        progreso.hide();
-        Toast.makeText(this,"Registro agregado exitosamente",Toast.LENGTH_SHORT).show();
-        txtNombre.setText("");
-        txtEmail.setText("");
-        txtTelefono.setText("");
-        txtApellidos.setText("");
-        txtDireccion.setText("");
-        txtRfcMedico.setText("");
     }
     private void cargaHome() {
         cargar = new Intent(this, Principal.class);

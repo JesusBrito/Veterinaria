@@ -13,17 +13,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Modificar_medico extends AppCompatActivity {
     EditText txt_rfc, txt_nombre, txt_direccion, txt_telefono, txt_email;
@@ -128,14 +133,12 @@ public class Modificar_medico extends AppCompatActivity {
             dialog = new ProgressDialog(this);
             dialog.setMessage("Cargando...");
             dialog.show();
-            String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/"+txt_rfc.getText().toString()+"/update" +
-                    "/"+txt_nombre.getText().toString()+"/"+txt_direccion.getText().toString()+"/"+
-                    txt_telefono.getText().toString()+"/"+txt_email.getText().toString()+"/";
+            String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/update/";
             url= url.replace(" ", "%20");
-            jsonArrayGuardarRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONArray>() {
+            StringRequest jsonArrayGuardarRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
                         @Override
-                        public void onResponse(JSONArray response) {
+                        public void onResponse(String response) {
                             Toast.makeText(getApplicationContext(),"Registro modificado exitosamente",Toast.LENGTH_SHORT).show();
                             dialog.hide();
                         }
@@ -149,7 +152,22 @@ public class Modificar_medico extends AppCompatActivity {
                             dialog.hide();
                         }
                     }
-            );
+            ){
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> postParam = new HashMap<String, String>();
+                    postParam.put("rfc", txt_rfc.getText().toString());
+                    postParam.put("nombre", txt_nombre.getText().toString());
+                    postParam.put("direccion", txt_direccion.getText().toString());
+                    postParam.put("telefono", txt_telefono.getText().toString());
+                    postParam.put("email", txt_email.getText().toString());
+                    return postParam;
+                }
+            };
             request.add(jsonArrayGuardarRequest);
         }
     }
@@ -157,26 +175,27 @@ public class Modificar_medico extends AppCompatActivity {
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando datos...");
         dialog.show();
-        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/" + rfc;
-        jsonClienteArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/";
+        StringRequest jsonClienteArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         try {
-                            JSONObject jsonObject = null;
-                            jsonObject = response.getJSONObject(0);
-                            JSONObject fields = jsonObject.getJSONObject("fields");
-                            String name = fields.optString("nombre_medico");
-                            String address = fields.optString("direccion_medico");
-                            String phone = fields.optString("telefono_medico");
-                            String email = fields.optString("email_medico");
+                            JSONObject responseJSON = null;
+                            responseJSON = new JSONObject(response);
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            JSONObject jsonObject = results.optJSONObject(0);
+
+                            String name = jsonObject.optString("nombre_medico");
+                            String address = jsonObject.optString("direccion_medico");
+                            String phone = jsonObject.optString("telefono_medico");
+                            String email = jsonObject.optString("email_medico");
 
                             txt_rfc.setText(rfc);
                             txt_nombre.setText(name);
                             txt_direccion.setText(address);
                             txt_telefono.setText(phone);
                             txt_email.setText(email);
-
                             dialog.hide();
 
                         } catch (JSONException e) {
@@ -195,7 +214,19 @@ public class Modificar_medico extends AppCompatActivity {
                 dialog.hide();
             }
         }
-        );
+        ){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("rfc", rfc);
+                return postParam;
+            }
+        };
         request.add(jsonClienteArrayRequest);
     }
     private void cargaWebServiceEliminar(){
@@ -203,11 +234,11 @@ public class Modificar_medico extends AppCompatActivity {
         dialog.setMessage("Eliminando...");
         dialog.show();
 
-        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/"+txt_rfc.getText().toString()+"/delete/";
-        jsonEliminarObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/delete/";
+        StringRequest jsonEliminarObjectRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         Intent back = new Intent(getApplicationContext(), Medicos.class);
                         startActivity(back);
                         overridePendingTransition(R.anim.right_in, R.anim.right_out);
@@ -225,7 +256,18 @@ public class Modificar_medico extends AppCompatActivity {
                         dialog.hide();
                     }
                 }
-        );
+        ){
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("rfc", rfc);
+                return postParam;
+            }
+        };
         request.add(jsonEliminarObjectRequest);
     }
 }

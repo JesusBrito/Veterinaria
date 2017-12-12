@@ -14,11 +14,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -26,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Medicos extends AppCompatActivity{
     ListView listView;
@@ -37,7 +41,7 @@ public class Medicos extends AppCompatActivity{
     Intent cargar;
     Button btnBuscar;
     EditText txtRfc;
-    String Rfc;
+    String Rfc="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +82,11 @@ public class Medicos extends AppCompatActivity{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        cargarWebServiceRfc();
+                        if (txtRfc.getText().toString().equals("")){
+                            cargarWebService();
+                        }else{
+                            cargarWebServiceRfc();
+                        }
                     }
                 }
         );
@@ -108,24 +116,30 @@ public class Medicos extends AppCompatActivity{
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
         Rfc= txtRfc.getText().toString();
-        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/"+Rfc;
+        String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         PersonaModelo cliente = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
 
-                                String rfc = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("nombre_medico");
-                                cliente = new PersonaModelo(rfc, name);
+                                String rfc = jsonObject.optString("rfc_medico");
+                                String name = jsonObject.optString("nombre_medico");
+                                cliente=new PersonaModelo(rfc, name);
 
                                 lista.add(cliente);
                             }
@@ -160,8 +174,20 @@ public class Medicos extends AppCompatActivity{
                         Log.e("ERROR: ", error.toString());
                         dialog.hide();
                     }
-                }
-        );
+                })
+        {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("rfc", Rfc);
+                return postParam;
+            }
+        };
         request.add(jsonArrayRequest);
     }
 
@@ -173,21 +199,26 @@ public class Medicos extends AppCompatActivity{
         String url = "https://veterinary-clinic-ws.herokuapp.com/medicos/";
         Activity activity = this;
         final Activity finalActivity = activity;
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         PersonaModelo cliente = null;
+                        JSONObject responseJSON = null;
                         lista.clear();
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = null;
-                                jsonObject = response.getJSONObject(i);
-
-                                String rfc = jsonObject.optString("pk");
-                                JSONObject fields = jsonObject.getJSONObject("fields");
-                                String name = fields.optString("nombre_medico");
-                                cliente = new PersonaModelo(rfc, name);
+                            responseJSON = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONArray results = responseJSON.optJSONArray("objects");
+                            for (int i=0;i<results.length();i++){
+                                JSONObject jsonObject=null;
+                                jsonObject = results.getJSONObject(i);
+                                String rfc = jsonObject.optString("rfc_medico");
+                                String name = jsonObject.optString("nombre_medico");
+                                cliente=new PersonaModelo(rfc, name);
 
                                 lista.add(cliente);
                             }

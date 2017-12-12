@@ -110,7 +110,6 @@ public class Clientes extends AppCompatActivity {
         cargar = new Intent(this, registro_cliente.class);
         this.startActivity(cargar);
     }
-
     private void cargarWebServiceRfc() throws JSONException {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Consultando Imagenes");
@@ -175,8 +174,8 @@ public class Clientes extends AppCompatActivity {
                         Log.e("ERROR: ", error.toString());
                         dialog.hide();
                     }
-                }
-                ){
+                })
+                {
                     @Override
                     public String getBodyContentType() {
                         return "application/x-www-form-urlencoded; charset=UTF-8";
@@ -212,7 +211,6 @@ public class Clientes extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         try {
-                            //JSONArray results = responseJSON.optJSONArray("results");
                             JSONArray results = responseJSON.optJSONArray("objects");
                             for (int i=0;i<results.length();i++){
                                 JSONObject jsonObject=null;
