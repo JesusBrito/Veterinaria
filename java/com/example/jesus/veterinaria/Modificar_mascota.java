@@ -1,7 +1,10 @@
 package com.example.jesus.veterinaria;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +51,7 @@ public class Modificar_mascota extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_mascota);
-
+        final Activity activity=this;
         Intent i = getIntent();
         idMascota = i.getStringExtra("id");
         inicializaComponentes();
@@ -131,7 +134,20 @@ public class Modificar_mascota extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        cargaWebServiceEliminar();
+                        AlertDialog.Builder builder;
+                        builder = new AlertDialog.Builder(activity, android.R.style.Theme_Material_Dialog_Alert);
+                        builder.setTitle("Eliminar cliente");
+                        builder.setMessage("¿Desea eliminar la mascota?, esto borrará todas las citas asociadas");
+                        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                cargaWebServiceEliminar();
+                            }
+                        });
+                        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {}
+                        });
+                        builder.setIcon(android.R.drawable.ic_dialog_alert);
+                        builder.show();
                     }
                 }
         );

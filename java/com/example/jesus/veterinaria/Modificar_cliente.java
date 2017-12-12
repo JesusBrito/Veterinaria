@@ -1,7 +1,11 @@
 package com.example.jesus.veterinaria;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +36,7 @@ public class Modificar_cliente extends AppCompatActivity {
     ImageButton btn_regresar, btn_home;
     CheckBox chEditar;
     ProgressDialog dialog;
+    Activity activity=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +98,21 @@ public class Modificar_cliente extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        cargaWebServiceEliminar();
-                    }
+                        AlertDialog.Builder builder;
+                        builder = new AlertDialog.Builder(activity, android.R.style.Theme_Material_Dialog_Alert);
+                        builder.setTitle("Eliminar cliente");
+                        builder.setMessage("¿Desea eliminar el cliente? esto borrará todas las mascotas asociadas");
+                        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                cargaWebServiceEliminar();
+                            }
+                        });
+                        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {}
+                            });
+                        builder.setIcon(android.R.drawable.ic_dialog_alert);
+                        builder.show();
+                     }
                 }
         );
         request = Volley.newRequestQueue(this);
