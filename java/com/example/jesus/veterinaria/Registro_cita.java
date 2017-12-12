@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,13 +39,14 @@ public class Registro_cita extends AppCompatActivity {
     ProgressDialog dialog;
     Spinner spinnerServicios, spinnerMascotas, spinnerMedicos;
     ListView listView;
+    ScrollView scroll;
     ArrayList<ServicioModelo> arrayListServicios, serviciosSeleccionados;
     ArrayList<MascotaModelo> arrayListMascotas;
     ArrayList<PersonaModelo> arrayListMedicos;
     List<String> listServicios, listMascotas, listMedicos;
     ImageButton principalServicioAdd;
     int positionSpinnerServicios, positionSpinnerMascotas, positionSpinnerMedicos;
-    Button btnGuardar;
+    ImageButton btnGuardar, btnCancelar;
     String fecha, hora, pkCita, idMascota, idMedico;
     SimpleDateFormat simpleDateFormat, simpleHourFormat;
     Calendar calendar;
@@ -62,8 +65,9 @@ public class Registro_cita extends AppCompatActivity {
         spinnerMedicos = (Spinner) findViewById(R.id.spinnerMedicos);
         listView = (ListView) findViewById(R.id.listView);
         principalServicioAdd = (ImageButton) findViewById(R.id.principalServicioAdd);
-        btnGuardar = (Button) findViewById(R.id.activity_registro_cliente_btnGuardar);
-
+        btnGuardar = (ImageButton) findViewById(R.id.activity_registro_cita_btnGuardar);
+        btnCancelar = (ImageButton) findViewById(R.id.activity_registro_cita_btnCancelar);
+        scroll = (ScrollView) findViewById(R.id.miScroll);
         arrayListServicios = new ArrayList<>();
         arrayListMascotas = new ArrayList<>();
         arrayListMedicos = new ArrayList<>();
@@ -186,7 +190,21 @@ public class Registro_cita extends AppCompatActivity {
                     }
                 }
         );
+        scroll.setOnTouchListener(new View.OnTouchListener() {
 
+            public boolean onTouch(View v, MotionEvent event) {
+                findViewById(R.id.listView).getParent()
+                        .requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+        listView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
         request = Volley.newRequestQueue(this);
         solicitarDatos();
     }
@@ -215,7 +233,8 @@ public class Registro_cita extends AppCompatActivity {
                                 listMascotas.add(nombre);
                             }
 
-                            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listMascotas);
+
+                            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(),R.layout.spinner_color , listMascotas);
                             spinnerMascotas.setAdapter(spinnerAdapter);
 
                         } catch (JSONException e) {
@@ -256,7 +275,7 @@ public class Registro_cita extends AppCompatActivity {
                                 listMedicos.add(nombre);
                             }
 
-                            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listMedicos);
+                            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_color, listMedicos);
                             spinnerMedicos.setAdapter(spinnerAdapter);
 
                         } catch (JSONException e) {
@@ -297,7 +316,7 @@ public class Registro_cita extends AppCompatActivity {
                                 listServicios.add(descripcion);
                             }
 
-                            ArrayAdapter<String> spinnerServiciosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listServicios);
+                            ArrayAdapter<String> spinnerServiciosAdapter = new ArrayAdapter<>(getApplicationContext(),R.layout.spinner_color, listServicios);
                             spinnerServicios.setAdapter(spinnerServiciosAdapter);
 
                             dialog.hide();
