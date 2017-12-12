@@ -76,7 +76,7 @@ public class Historial_mascota extends AppCompatActivity implements Response.Lis
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent agregar = new Intent(getApplicationContext(), registro_servicio.class);
+                        Intent agregar = new Intent(getApplicationContext(), Registro_cita.class);
                         agregar.putExtra("rfc", idMascota);
                         startActivity(agregar);
                         overridePendingTransition(R.anim.left_out, R.anim.left_in);

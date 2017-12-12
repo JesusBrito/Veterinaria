@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jesus.veterinaria.Registro_cita"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -27,7 +26,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:background="@mipmap/regresar"/>
+                android:background="@mipmap/regresar"
+                />
         </LinearLayout>
         <!--Boton REGRESAR-->
         <!--TEXTO-->
@@ -62,94 +62,142 @@
     <!--Fin Cabecera-->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:layout_marginBottom="20dp">
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Registro de cita"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="15dp"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:layout_marginRight="32dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Mascota: " />
+                <Spinner
+                    android:id="@+id/spinnerMascotas"
+                    android:layout_width="235dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="15dp"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="Médico: "/>
+
+                <Spinner
+                    android:id="@+id/spinnerMedicos"
+                    android:layout_width="235dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp">
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/activity_registro_cliente_txtDirec"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="0"
-                    android:hint="Nombre de la mascota"
-                    android:textColor="@android:color/background_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Servicios"
+                    android:textColor="@color/verde_azulado"
                     android:textSize="20dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
+                <View
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/azul"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Servicios"
-                    android:textSize="45dp"
-                    android:textColor="@color/verde_azulado"/>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Servicio: "/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="left"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
                 <Spinner
-                    android:layout_width="235dp"
-                    android:layout_height="50dp"></Spinner>
-                <ImageButton
-                    android:layout_marginLeft="60dp"
-                    android:id="@+id/principalServicioAdd"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
-                    android:layout_gravity="right"
-                    android:background="@mipmap/imgplus">
-                </ImageButton>
-            </LinearLayout>
-            <ListView
-                android:id="@+id/listView"
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_weight="0.22" />
+                    android:id="@+id/spinnerServicios"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent" />
 
+                <ImageButton
+                    android:id="@+id/principalServicioAdd"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/imgplus" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:weightSum="1"
-                android:layout_marginTop="15dp">
+                android:orientation="horizontal"
+                android:weightSum="1">
+
                 <Button
                     android:id="@+id/activity_registro_cliente_btnCancelar"
-                    android:layout_width="140dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/darker_gray"
                     android:ems="20"
                     android:text="Cancelar"
                     android:textColor="@android:color/white"
                     android:textSize="16dp" />
+
                 <TextView
                     android:layout_width="25dp"
                     android:layout_height="20dp" />
@@ -158,13 +206,17 @@
                     android:id="@+id/activity_registro_cliente_btnGuardar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.72"
                     android:background="@color/verde_azulado"
                     android:ems="20"
-                    android:textSize="16dp"
                     android:text="Guardar"
                     android:textColor="@android:color/white"
-                    android:layout_weight="0.72" />
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

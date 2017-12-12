@@ -20,6 +20,11 @@ public class MascotaModelo {
         this.id = id;
         this.rfc=rfc;
     }
+    public MascotaModelo(String id, String name) {
+        super();
+        this.name = name;
+        this.id = id;
+    }
 
 
     public String getName() {

@@ -43,7 +43,7 @@ public class Modificar_mascota extends AppCompatActivity {
     CheckBox chEditar;
     ProgressDialog dialog;
     Spinner spTamaño;
-    String Tamaño , tamañoSpinner;
+    String Tamaño;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class Modificar_mascota extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView tV= (TextView) view;
-                tamañoSpinner=tV.getText().toString();
+                Tamaño=tV.getText().toString();
             }
 
             @Override
@@ -106,7 +106,6 @@ public class Modificar_mascota extends AppCompatActivity {
                             txt_fecha.setEnabled(true);
                             btnGuardar.setEnabled(true);
                             spTamaño.setEnabled(true);
-                            Tamaño=txt_tamaño.getText().toString();
                         }else{
                             txt_nombre.setEnabled(false);
                             txt_especie.setEnabled(false);
@@ -156,7 +155,7 @@ public class Modificar_mascota extends AppCompatActivity {
         chEditar = (CheckBox) findViewById(R.id.activityDetalleMascotaChEditar);
         btnGuardar = (Button) findViewById(R.id.activity_detalle_mascotaBtnGuardar);
         btnEliminar = (Button) findViewById(R.id.activity_detalle_mascotaBtnEliminar);
-        spTamaño=(Spinner) findViewById(R.id.activity_registro_mascota_spTamanio);
+        spTamaño=(Spinner) findViewById(R.id.activity_detalle_mascota_spTamanio);
 
     }
     private void cargarWebServiceGuardar() {
@@ -176,7 +175,7 @@ public class Modificar_mascota extends AppCompatActivity {
                     +txt_nombre.getText().toString()+"/"
                     +txt_especie.getText().toString()+"/"
                     +txt_raza.getText().toString()+"/"+txt_color.getText().toString()+"/"
-                    +txt_tamaño.getText().toString()+"/"+txt_senia.getText().toString()+"/"
+                    +Tamaño+"/"+txt_senia.getText().toString()+"/"
                     +txt_fecha.getText().toString()+"/";
             url= url.replace(" ", "%20");
             jsonArrayGuardarRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -231,7 +230,9 @@ public class Modificar_mascota extends AppCompatActivity {
                             txt_tamaño.setText(tamanio);
                             txt_senia.setText(senia);
                             txt_rfc_cliente.setText(rfc);
-
+                            ArrayAdapter myAdapter = (ArrayAdapter) spTamaño.getAdapter();
+                            int spinnerPosition = myAdapter.getPosition(tamanio);
+                            spTamaño.setSelection(spinnerPosition);
                             dialog.hide();
                         } catch (JSONException e) {
                             e.printStackTrace();

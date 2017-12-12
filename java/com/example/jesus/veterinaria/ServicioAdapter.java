@@ -57,6 +57,7 @@ public class ServicioAdapter extends BaseAdapter {
             v = inf.inflate(R.layout.item_list_servicio, null);
         }
         ServicioModelo servicio = items.get(position);
+
         TextView title = (TextView) v.findViewById(R.id.name);
         title.setText(servicio.getName());
         TextView id = (TextView) v.findViewById(R.id.id);

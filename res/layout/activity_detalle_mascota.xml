@@ -93,7 +93,8 @@
                     android:id="@+id/detalle_mascota_txt_cve"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:hint="RFC"
                     android:enabled="false"/>
             </LinearLayout>
 
@@ -173,8 +174,9 @@
                 <EditText
                     android:id="@+id/detalle_mascota_txt_raza"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="42dp"
                     android:textSize="20sp"
+                    android:hint="Raza"
                     android:enabled="false"/>
             </LinearLayout>
             <LinearLayout
@@ -216,9 +218,10 @@
                 <EditText
                     android:id="@+id/detalle_mascota_txt_tamanio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="42dp"
                     android:textSize="20sp"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    android:hint="Tamaño"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
